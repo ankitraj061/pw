@@ -5,11 +5,7 @@ import { Calendar, Clock } from 'lucide-react';
 import holidays from '@/data/holidays/holidays.json';
 
 
-// Type definitions
-interface Holiday {
-  name: string;
-  date: string;
-}
+
 
 const Holidays: React.FC = () => {
   

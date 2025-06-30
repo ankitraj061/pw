@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { 
-  BookOpen, Users, Award, TrendingUp, Building, Briefcase, Code, 
+  BookOpen, Users, Award, TrendingUp, Building, Code, 
   PieChart, Stethoscope, PlayCircle, ChevronRight, Lightbulb,
   DollarSign
 } from 'lucide-react';
@@ -10,8 +10,8 @@ const AcademicsPage = () => {
   const [activeSchool, setActiveSchool] = useState('technology');
 
   const stats = [
-    { icon: BookOpen, number: '5+', label: 'Programs', color: 'text-primary' },
-    { icon: Users, number: '10+', label: 'Faculty', color: 'text-primary' },
+    { icon: BookOpen, number: '3', label: 'Programs', color: 'text-primary' },
+    { icon: Users, number: '20+', label: 'Faculty', color: 'text-primary' },
     { icon: Award, number: '90%', label: 'Placement', color: 'text-primary' },
     { icon: TrendingUp, number: '₹12.5L', label: 'Avg Package', color: 'text-primary' }
   ];
@@ -21,18 +21,14 @@ const AcademicsPage = () => {
       title: 'School of Technology',
       icon: Code,
       description: 'Leading innovation in engineering and technology education with cutting-edge research.',
-      departments: ['Computer Science', 'Electronics', 'Mechanical', 'Civil', 'Information Technology', 'AI & Data Science'],
-      placementRate: '97%',
-      avgPackage: '₹14.2L',
+      departments: ['Computer Science', 'System Design', 'Cloud computing & DevOps', 'Tech Product Management', 'Information Technology', 'AI & Data Science'],
       recruiters: ['Microsoft', 'Google', 'Amazon', 'TCS', 'Infosys']
     },
     management: {
       title: 'School of Management',
       icon: PieChart,
       description: 'Developing future business leaders with comprehensive management education.',
-      departments: ['MBA', 'BBA', 'International Business', 'Digital Marketing', 'Finance', 'HR Management'],
-      placementRate: '94%',
-      avgPackage: '₹11.8L',
+      departments: ['BBA', 'International Business', 'Digital Marketing', 'Finance', 'HR Management'],
       recruiters: ['Deloitte', 'KPMG', 'Accenture', 'Wipro', 'HCL']
     },
     healthcare: {

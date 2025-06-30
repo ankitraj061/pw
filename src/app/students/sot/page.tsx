@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MapPin, Users, GraduationCap } from 'lucide-react';
 

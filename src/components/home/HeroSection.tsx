@@ -51,26 +51,10 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-lg transition-all duration-300"
+              className="border-2 border-none text-primary hover:bg-primary hover:text-white px-8 py-3 text-lg transition-all duration-300"
             >
               Student Login
             </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 pt-8 max-w-md mx-auto">
-            {[
-              { number: '30+', label: 'Programs' },
-              { number: '500+', label: 'Faculty' },
-              { number: '10k+', label: 'Students' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="font-poppins font-bold text-2xl md:text-3xl text-secondary">
-                  {stat.number}
-                </div>
-                <div className="font-open-sans text-sm text-primary/70">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

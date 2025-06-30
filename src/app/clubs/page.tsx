@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import { Users, Trophy, Heart, Code, Palette, ArrowLeft, Mail, Phone, Calendar, MapPin } from 'lucide-react';
+import { Users, Trophy, Heart, Code, Palette, ArrowLeft, Mail, Calendar } from 'lucide-react';
+import Image from 'next/image';
 
 const ClubPage = () => {
   const [selectedClub, setSelectedClub] = useState(null);
@@ -17,13 +18,12 @@ const ClubPage = () => {
         name: 'Mohammad Shoyeb Ansari',
         position: 'Club President',
         email: 'shoyeb.sot010069@pwioi.com',
-        
       },
       coreMembers: [
-        { name: 'Aman Raj Gupta', position: 'Core Member',  },
-        { name: 'Rohit Makhani', position: 'Core Member', },
-        { name: 'Saiyam Kumar', position: 'Core Member',  },
-        { name: 'Jivan Jamdar', position: 'Secretary', }
+        { name: 'Aman Raj Gupta', position: 'Core Member' },
+        { name: 'Rohit Makhani', position: 'Core Member' },
+        { name: 'Saiyam Kumar', position: 'Core Member' },
+        { name: 'Jivan Jamdar', position: 'Secretary' }
       ],
       activities: [
         'Annual hackathons and coding competitions',
@@ -49,17 +49,16 @@ const ClubPage = () => {
         name: 'Harish Sharma',
         position: 'Club President',
         email: 'harish.sot010042@pwioi.com',
-        
       },
       coreMembers: [
-        { name: 'Parv Manglani', position: 'Core Member',  },
-        { name: 'Abhinav Jain', position: 'Core Member',  },
-        { name: 'Aditi', position: 'Core Member',  },
-        { name: 'Harshit Raj', position: 'Core Member',  },
-        {name : 'MVS Gayathri', position: 'Core Member',  },
-        {name:"Samruddhi Gujarathi" , position: 'Core Member',  },
-        {name:"Sushrut Kaviskar", position: 'Core Member',  },
-        {name:"Rohit Makani", position: 'Core Member',  },
+        { name: 'Parv Manglani', position: 'Core Member' },
+        { name: 'Abhinav Jain', position: 'Core Member' },
+        { name: 'Aditi', position: 'Core Member' },
+        { name: 'Harshit Raj', position: 'Core Member' },
+        { name: 'MVS Gayathri', position: 'Core Member' },
+        { name: 'Samruddhi Gujarathi', position: 'Core Member' },
+        { name: 'Sushrut Kaviskar', position: 'Core Member' },
+        { name: 'Rohit Makani', position: 'Core Member' }
       ],
       activities: [
         'Community development and service projects',
@@ -79,14 +78,13 @@ const ClubPage = () => {
       name: 'Cultural Club',
       icon: Palette,
       image: '/cultural.avif',
-      logo:"https://ik.imagekit.io/s0kb1s3cx3/PWIOI/ehsaas.jpg?updatedAt=1751273652766",
+      logo: 'https://ik.imagekit.io/s0kb1s3cx3/PWIOI/ehsaas.jpg?updatedAt=1751273652766',
       bgColor: 'bg-pink-50',
       description: 'Celebrating diversity and fostering artistic expression through vibrant cultural events',
       head: {
         name: 'Arjun Mehta',
         position: 'Club President',
         email: 'arjun.mehta@pwioi.edu',
-       
       },
       coreMembers: [
         { name: 'Sophia Kim', position: 'Vice President', specialty: 'Classical & Contemporary Dance' },
@@ -150,13 +148,12 @@ const ClubPage = () => {
         name: 'Abhyudaya',
         position: 'Club President',
         email: 'abhyudaya.sot010007@pwioi.com',
-       
       },
       coreMembers: [
-        { name: 'Anuj Kumar', position: 'Core Member',  },
+        { name: 'Anuj Kumar', position: 'Core Member' },
         { name: 'Alok Kumar', position: 'Core Member', specialty: 'Basketball & Team Sports' },
-        { name: 'Manshi Sharma', position: 'Core Member',  },
-        { name: 'Niraj Roy', position: 'Core Member',  }  
+        { name: 'Manshi Sharma', position: 'Core Member' },
+        { name: 'Niraj Roy', position: 'Core Member' }
       ],
       activities: [
         'Inter-collegiate tournaments and championships',
@@ -175,7 +172,7 @@ const ClubPage = () => {
 
   if (selectedClub) {
     const club = clubsData[selectedClub];
-    const IconComponent = club.icon;
+    
     
     return (
       <div className="min-h-screen bg-gradient-to-br from-cream-base to-cream-warm">
@@ -226,7 +223,6 @@ const ClubPage = () => {
                           <Mail size={18} className="text-accent" />
                           <span>{club.head.email}</span>
                         </div>
-                        
                       </div>
                     </div>
                   </div>
@@ -248,7 +244,6 @@ const ClubPage = () => {
                         <div className="flex-1 space-y-2">
                           <h4 className="font-poppins font-semibold text-lg text-primary">{member.name}</h4>
                           <p className="font-open-sans text-secondary font-medium">{member.position}</p>
-                          
                         </div>
                       </div>
                     </div>
@@ -378,22 +373,14 @@ const ClubPage = () => {
                 >
                   <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-cream-warm/20">
                     {/* Card Header */}
-                   <div className="relative h-40 overflow-hidden rounded-xl shadow-md">
-  {/* Background Image */}
-  <img
-    src={club.image}
-    alt="Club Banner"
-    className="w-full h-full object-cover"
-  />
-
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-black/10" />
-
-  
-
-  
-</div>
-
+                    <div className="relative h-40 overflow-hidden rounded-xl shadow-md">
+                      <Image
+                        src={club.image}
+                        alt="Club Banner"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/10" />
+                    </div>
                     
                     {/* Card Content */}
                     <div className="p-8">
@@ -406,10 +393,6 @@ const ClubPage = () => {
                       
                       {/* Quick Info */}
                       <div className="space-y-3 mb-6">
-                        {/* <div className="flex items-center gap-3 font-open-sans text-sm text-primary/70">
-                          <Users size={18} className="text-accent" />
-                          <span>180+ Active Members</span>
-                        </div> */}
                         <div className="flex items-center gap-3 font-open-sans text-sm text-primary/70">
                           <Calendar size={18} className="text-accent" />
                           <span>Regular Events & Activities</span>
@@ -428,8 +411,6 @@ const ClubPage = () => {
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 };

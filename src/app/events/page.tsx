@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+
 import { Calendar, Clock, MapPin, Users, ChevronRight, Star, TrendingUp } from 'lucide-react';
 
 const EventsComponent = () => {
@@ -120,7 +120,7 @@ const EventsComponent = () => {
     }
   };
 
-  const renderPastEventCard = (event, index) => {
+  const renderPastEventCard = (event) => {
     const baseClasses = "group bg-background relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2";
     
     switch(event.cardType) {
