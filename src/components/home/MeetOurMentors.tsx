@@ -9,60 +9,80 @@ const MeetOurMentors = () => {
   const mentors = [
     {
       id: 1,
-      name: 'Ankit Verma',
-      role: 'Senior Software Engineer',
+      name: 'Gopal Sharma',
+      role: 'Business Thinking',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face',
       company: 'Microsoft',
       companyLogo: '🏢'
     },
     {
       id: 2,
-      name: 'Ruchi Pakhle',
-      role: 'Software Engineer',
+      name: 'Saurabh Moharikar',
+      role: 'AI/ML',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b332c3cb?w=400&h=500&fit=crop&crop=face',
       company: 'Red Hat',
       companyLogo: '🎩'
     },
     {
       id: 3,
-      name: 'Shivam Goyal',
-      role: 'Software Engineer',
+      name: 'Shubham Gautam',
+      role: 'Operating System',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face',
       company: 'Navi',
       companyLogo: '🚀'
     },
     {
       id: 4,
-      name: 'Ruchika Suryawanshi',
-      role: 'Software Engineer',
+      name: 'Kinjal Sengupta',
+      role: 'Career Excellence',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face',
       company: 'J.P.Morgan',
       companyLogo: '🏦'
     },
     {
       id: 5,
-      name: 'Debayan Ganguly',
-      role: 'Senior Software Engineer',
+      name: 'Syed Zabi Ulla',
+      role: 'Java/C++',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face',
       company: 'Decentro',
       companyLogo: '💼'
     },
     {
       id: 6,
-      name: 'Anita Sharma',
-      role: 'Lead Developer',
+      name: 'Nitin M',
+      role: 'Web Development',
       image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=500&fit=crop&crop=face',
       company: 'Google',
       companyLogo: '🔍'
     },
     {
       id: 7,
-      name: 'Rajesh Kumar',
-      role: 'Tech Lead',
+      name: 'Anisha Koshy',
+      role: 'English',
       image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=500&fit=crop&crop=face',
       company: 'Amazon',
       companyLogo: '📦'
-    }
+    },
+    {
+      id: 8,
+      name: 'Satya Sai Neerukonda',
+      role: 'DSA',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face',
+      company: 'Google',
+      companyLogo: '🔍'
+    },
+    
+    
+    {
+      id: 10,
+      name: 'Kaibalya Biswal',
+      role: 'Python',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face',
+      company: 'Google',
+      companyLogo: '🔍'
+    },
+
+
   ];
 
   const nextSlide = () => {
@@ -126,20 +146,20 @@ const MeetOurMentors = () => {
                   
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-bold text-white mb-1">
+                    <h3 className="text-xl font-bold text-accent mb-1">
                       {mentor.name}
                     </h3>
-                    <p className="text-gray-300 text-sm mb-3 text-secondary">
+                    <p className="text-white text-sm mb-3">
                       {mentor.role}
                     </p>
                     
                     {/* Company */}
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                       <span className="text-2xl">{mentor.companyLogo}</span>
                       <span className="text-white font-semibold text-sm">
                         {mentor.company}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

@@ -8,22 +8,22 @@ const ClubPage = () => {
   const clubsData = {
     tech: {
       id: 'tech',
-      name: 'Tech Club',
+      name: 'Tech Club(Qubit)',
       icon: Code,
       image: '/techclub.avif',
       bgColor: 'bg-blue-50',
       description: 'Innovating the future through technology and programming excellence',
       head: {
-        name: 'Alex Chen',
+        name: 'Mohammad Shoyeb Ansari',
         position: 'Club President',
-        email: 'alex.chen@pwioi.edu',
-        phone: '+91 98765 43210'
+        email: 'shoyeb.sot010069@pwioi.com',
+        
       },
       coreMembers: [
-        { name: 'Sarah Kumar', position: 'Vice President', specialty: 'AI/ML Development' },
-        { name: 'Mike Johnson', position: 'Technical Lead', specialty: 'Full Stack Development' },
-        { name: 'Priya Patel', position: 'Event Coordinator', specialty: 'Mobile Development' },
-        { name: 'David Lee', position: 'Secretary', specialty: 'Cybersecurity' }
+        { name: 'Aman Raj Gupta', position: 'Core Member',  },
+        { name: 'Rohit Makhani', position: 'Core Member', },
+        { name: 'Saiyam Kumar', position: 'Core Member',  },
+        { name: 'Jivan Jamdar', position: 'Secretary', }
       ],
       activities: [
         'Annual hackathons and coding competitions',
@@ -33,29 +33,33 @@ const ClubPage = () => {
         'Innovation lab and research projects'
       ],
       recentEvents: [
-        'PWIOI Hackathon 2024',
-        'AI/ML Workshop Series',
+        'SQL PowerBI Contest',
+        'CP Mentorship Program',
         'Tech Industry Meetup'
       ]
     },
     social: {
       id: 'social',
-      name: 'Social Welfare Club',
+      name: 'Social Welfare Club(Ehsaas)',
       icon: Heart,
       image: '/socialwelfare.avif',
       bgColor: 'bg-green-50',
       description: 'Creating positive impact through community service and social responsibility',
       head: {
-        name: 'Emma Rodriguez',
+        name: 'Harish Sharma',
         position: 'Club President',
-        email: 'emma.rodriguez@pwioi.edu',
-        phone: '+91 87654 32109'
+        email: 'harish.sot010042@pwioi.com',
+        
       },
       coreMembers: [
-        { name: 'James Wilson', position: 'Vice President', specialty: 'Community Outreach' },
-        { name: 'Lisa Zhang', position: 'Volunteer Coordinator', specialty: 'Event Management' },
-        { name: 'Ryan O\'Connor', position: 'Fundraising Lead', specialty: 'Donor Relations' },
-        { name: 'Maya Sharma', position: 'Secretary', specialty: 'Social Media Coordination' }
+        { name: 'Parv Manglani', position: 'Core Member',  },
+        { name: 'Abhinav Jain', position: 'Core Member',  },
+        { name: 'Aditi', position: 'Core Member',  },
+        { name: 'Harshit Raj', position: 'Core Member',  },
+        {name : 'MVS Gayathri', position: 'Core Member',  },
+        {name:"Samruddhi Gujarathi" , position: 'Core Member',  },
+        {name:"Sushrut Kaviskar", position: 'Core Member',  },
+        {name:"Rohit Makani", position: 'Core Member',  },
       ],
       activities: [
         'Community development and service projects',
@@ -65,9 +69,9 @@ const ClubPage = () => {
         'Disaster relief and emergency response'
       ],
       recentEvents: [
-        'Winter Relief Drive 2024',
-        'Community Garden Initiative',
-        'Senior Care Program Launch'
+        'Festival for All',
+        'Education Drive',
+        'Periods of Change'
       ]
     },
     cultural: {
@@ -75,13 +79,14 @@ const ClubPage = () => {
       name: 'Cultural Club',
       icon: Palette,
       image: '/cultural.avif',
+      logo:"https://ik.imagekit.io/s0kb1s3cx3/PWIOI/ehsaas.jpg?updatedAt=1751273652766",
       bgColor: 'bg-pink-50',
       description: 'Celebrating diversity and fostering artistic expression through vibrant cultural events',
       head: {
         name: 'Arjun Mehta',
         position: 'Club President',
         email: 'arjun.mehta@pwioi.edu',
-        phone: '+91 76543 21098'
+       
       },
       coreMembers: [
         { name: 'Sophia Kim', position: 'Vice President', specialty: 'Classical & Contemporary Dance' },
@@ -142,16 +147,16 @@ const ClubPage = () => {
       bgColor: 'bg-red-50',
       description: 'Building champions through athletic excellence, teamwork, and sportsmanship',
       head: {
-        name: 'Marcus Thompson',
+        name: 'Abhyudaya',
         position: 'Club President',
-        email: 'marcus.thompson@pwioi.edu',
-        phone: '+91 54321 09876'
+        email: 'abhyudaya.sot010007@pwioi.com',
+       
       },
       coreMembers: [
-        { name: 'Ashley Davis', position: 'Vice President', specialty: 'Track & Field Athletics' },
-        { name: 'Chris Martinez', position: 'Equipment Manager', specialty: 'Basketball & Team Sports' },
-        { name: 'Nina Williams', position: 'Event Coordinator', specialty: 'Aquatic Sports' },
-        { name: 'Jake Anderson', position: 'Fitness Trainer', specialty: 'Strength & Conditioning' }
+        { name: 'Anuj Kumar', position: 'Core Member',  },
+        { name: 'Alok Kumar', position: 'Core Member', specialty: 'Basketball & Team Sports' },
+        { name: 'Manshi Sharma', position: 'Core Member',  },
+        { name: 'Niraj Roy', position: 'Core Member',  }  
       ],
       activities: [
         'Inter-collegiate tournaments and championships',
@@ -221,10 +226,7 @@ const ClubPage = () => {
                           <Mail size={18} className="text-accent" />
                           <span>{club.head.email}</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <Phone size={18} className="text-accent" />
-                          <span>{club.head.phone}</span>
-                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -246,7 +248,7 @@ const ClubPage = () => {
                         <div className="flex-1 space-y-2">
                           <h4 className="font-poppins font-semibold text-lg text-primary">{member.name}</h4>
                           <p className="font-open-sans text-secondary font-medium">{member.position}</p>
-                          <p className="font-open-sans text-sm text-primary/70">{member.specialty}</p>
+                          
                         </div>
                       </div>
                     </div>
@@ -311,11 +313,11 @@ const ClubPage = () => {
                   </div>
                   <div className="flex justify-between items-center p-3 bg-gradient-to-r from-cream-base to-cream-warm rounded-lg">
                     <span className="font-open-sans text-primary/80">Events This Year</span>
-                    <span className="font-poppins font-bold text-secondary">28</span>
+                    <span className="font-poppins font-bold text-secondary">10+</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-gradient-to-r from-cream-base to-cream-warm rounded-lg">
                     <span className="font-open-sans text-primary/80">Established</span>
-                    <span className="font-poppins font-bold text-secondary">2018</span>
+                    <span className="font-poppins font-bold text-secondary">2023</span>
                   </div>
                 </div>
               </div>
@@ -327,9 +329,9 @@ const ClubPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cream-base to-cream-warm">
+    <div className="min-h-screen bg-gray-100">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-15 lg:py-15 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6 animate-fade-in">
@@ -347,9 +349,9 @@ const ClubPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
             {[
               { number: '5', label: 'Active Clubs' },
-              { number: '800+', label: 'Student Members' },
-              { number: '120+', label: 'Annual Events' },
-              { number: '15+', label: 'Awards Won' },
+              { number: '300+', label: 'Student Members' },
+              { number: '50+', label: 'Annual Events' },
+              { number: '10+', label: 'Awards Won' },
             ].map((stat, i) => (
               <div key={i} className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-cream-warm/30">
                 <div className="font-poppins font-bold text-2xl md:text-3xl text-secondary mb-1">
@@ -387,17 +389,9 @@ const ClubPage = () => {
   {/* Overlay */}
   <div className="absolute inset-0 bg-black/10" />
 
-  {/* Icon centered over the image */}
-  <div className="absolute inset-0 flex items-center justify-center">
-    <div className="bg-white/20 backdrop-blur-sm p-6 rounded-full shadow-lg">
-      <IconComponent size={48} className="text-white" />
-    </div>
-  </div>
+  
 
-  {/* Top-right light dot */}
-  <div className="absolute top-6 right-6">
-    <div className="w-4 h-4 bg-white/30 rounded-full"></div>
-  </div>
+  
 </div>
 
                     
@@ -412,10 +406,10 @@ const ClubPage = () => {
                       
                       {/* Quick Info */}
                       <div className="space-y-3 mb-6">
-                        <div className="flex items-center gap-3 font-open-sans text-sm text-primary/70">
+                        {/* <div className="flex items-center gap-3 font-open-sans text-sm text-primary/70">
                           <Users size={18} className="text-accent" />
                           <span>180+ Active Members</span>
-                        </div>
+                        </div> */}
                         <div className="flex items-center gap-3 font-open-sans text-sm text-primary/70">
                           <Calendar size={18} className="text-accent" />
                           <span>Regular Events & Activities</span>

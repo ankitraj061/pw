@@ -1,7 +1,7 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { Building2, Calendar } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 
 const InternshipAndPlacements = () => {
   const placedStudents = [
@@ -318,7 +318,7 @@ const InternshipAndPlacements = () => {
 
         .animate-marquee {
           display: inline-block;
-          animation: marquee 40s linear infinite;
+          animation: marquee 100s linear infinite;
         }
 
         .animate-marquee:hover {

@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, CircleUser, ChevronDown } from 'lucide-react';
 
@@ -10,10 +10,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isStudentsDropdownOpen, setIsStudentsDropdownOpen] = useState(false);
   const [isMobileStudentsOpen, setIsMobileStudentsOpen] = useState(false);
-  const [selectedSchool, setSelectedSchool] = useState('technology');
-  const [selectedLocation, setSelectedLocation] = useState('bengaluru');
   const pathname = usePathname();
-  const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
@@ -24,34 +21,25 @@ const Navbar = () => {
   ];
 
   const schools = [
-    { id: 'technology', name: 'School of Technology' },
-    { id: 'management', name: 'School of Management' },
-    { id: 'healthcare', name: 'School of Healthcare' }
+    { 
+      id: 'sot', 
+      name: 'School of Technology', 
+      href: '/students/sot',
+      shortName: 'SOT' 
+    },
+    { 
+      id: 'som', 
+      name: 'School of Management', 
+      href: '/students/som',
+      shortName: 'SOM' 
+    },
+    { 
+      id: 'soh', 
+      name: 'School of Healthcare', 
+      href: '/students/soh',
+      shortName: 'SOH' 
+    }
   ];
-
-  const locations = {
-    technology: [
-      { id: 'bengaluru', name: 'Bengaluru' },
-      { id: 'pune', name: 'Pune' },
-      { id: 'noida', name: 'Noida' }
-    ],
-    management: [
-      { id: 'bengaluru', name: 'Bengaluru' },
-      { id: 'pune', name: 'Pune' },
-      { id: 'noida', name: 'Noida' }
-    ],
-    healthcare: [
-      { id: 'bengaluru', name: 'Bengaluru' },
-      { id: 'pune', name: 'Pune' },
-      { id: 'noida', name: 'Noida' }
-    ]
-  };
-
-  const batches = {
-    bengaluru: ['2023', '2024', '2025'],
-    pune: ['2025'],
-    noida: ['2025']
-  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -89,34 +77,11 @@ const Navbar = () => {
     }
   }, [isMenuOpen]);
 
-  const handleSchoolSelect = useCallback((schoolId: string) => {
-    setSelectedSchool(schoolId);
-    // Reset location to first available when school changes
-    const firstLocation = locations[schoolId as keyof typeof locations][0].id;
-    setSelectedLocation(firstLocation);
-  }, []);
-
-  const handleLocationSelect = useCallback((locationId: string) => {
-    setSelectedLocation(locationId);
-  }, []);
-
-  const getStudentLink = useCallback((batch: string) => {
-    return `/students/${selectedSchool}/${selectedLocation}/${batch}`;
-  }, [selectedSchool, selectedLocation]);
-
-  // FIXED: Simplified batch click handler
-  const handleBatchClick = useCallback((e: React.MouseEvent, batch: string) => {
-    e.preventDefault();
-    
-    // Close all dropdowns
+  const handleSchoolClick = () => {
     setIsStudentsDropdownOpen(false);
     setIsMenuOpen(false);
     setIsMobileStudentsOpen(false);
-    
-    // Navigate using router.push - let Next.js handle it naturally
-    const link = getStudentLink(batch);
-    router.push(link);
-  }, [router, getStudentLink]);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background border-b-2 border-accent shadow-sm">
@@ -125,7 +90,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="font-poppins font-bold text-2xl text-primary">
-              PWIOI
+              <img src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/pwioi.webp?updatedAt=1749631481920" alt="" className="w-30 h-8" />
             </Link>
           </div>
 
@@ -161,77 +126,28 @@ const Navbar = () => {
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                 </button>
 
-                {/* Desktop Dropdown Menu */}
+                {/* Desktop Dropdown Menu - Simplified */}
                 {isStudentsDropdownOpen && (
                   <div 
-                    className="absolute top-full left-0 mt-1 w-80 bg-background border border-gray-200 rounded-lg shadow-lg z-50"
+                    className="absolute top-full left-0 mt-1 w-64 bg-background border border-gray-200 rounded-lg shadow-lg z-50"
                     onMouseLeave={() => setIsStudentsDropdownOpen(false)}
                   >
-                    <div className="p-4">
-                      {/* Schools */}
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2">Select School</h4>
-                        <div className="grid gap-2">
-                          {schools.map((school) => (
-                            <button
-                              key={school.id}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleSchoolSelect(school.id);
-                              }}
-                              className={`text-left px-3 py-2 rounded-md text-sm transition-colors duration-200 ${
-                                selectedSchool === school.id
-                                  ? 'bg-accent text-accent-foreground font-medium'
-                                  : 'text-gray-600 hover:bg-accent/30'
-                              }`}
-                              type="button"
-                            >
-                              {school.name}
-                            </button>
-                          ))}
-                        </div>
+                    <div className="p-3">
+                      
+                      <div className="space-y-1">
+                        {schools.map((school) => (
+                          <Link
+                            key={school.id}
+                            href={school.href}
+                            onClick={handleSchoolClick}
+                            className="flex items-center justify-between px-3 py-3 rounded-md text-sm text-gray-700 hover:bg-accent/30 hover:text-accent-foreground transition-colors duration-200 group"
+                          >
+                            <span className="font-medium">{school.name}</span>
+                            
+                          </Link>
+                        ))}
                       </div>
-
-                      {/* Locations */}
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2">Select Location</h4>
-                        <div className="grid grid-cols-3 gap-2">
-                          {locations[selectedSchool as keyof typeof locations].map((location) => (
-                            <button
-                              key={location.id}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleLocationSelect(location.id);
-                              }}
-                              className={`px-3 py-2 rounded-md text-sm transition-colors duration-200 ${
-                                selectedLocation === location.id
-                                  ? 'bg-accent text-accent-foreground font-medium'
-                                  : 'text-gray-600 hover:bg-accent/30'
-                              }`}
-                              type="button"
-                            >
-                              {location.name}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Batches - FIXED */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-gray-700 mb-2">Select Batch</h4>
-                        <div className="grid grid-cols-3 gap-2">
-                          {batches[selectedLocation as keyof typeof batches].map((batch) => (
-                            <button
-                              key={batch}
-                              onClick={(e) => handleBatchClick(e, batch)}
-                              type="button"
-                              className="px-3 py-2 rounded-md text-sm text-center text-gray-600 hover:bg-accent/30 hover:text-accent-foreground transition-colors duration-200 border border-gray-200 cursor-pointer"
-                            >
-                              {batch} Batch
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 )}
@@ -291,71 +207,24 @@ const Navbar = () => {
                 
                 {/* Mobile Students Dropdown Content */}
                 {isMobileStudentsOpen && (
-                  <div className="mt-2 space-y-4">
-                    {/* Schools Selection */}
-                    <div className="px-3">
-                      <h5 className="text-sm font-medium text-gray-700 mb-2">Schools</h5>
-                      <div className="space-y-1">
-                        {schools.map((school) => (
-                          <button
-                            key={school.id}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleSchoolSelect(school.id);
-                            }}
-                            type="button"
-                            className={`block text-left w-full px-3 py-2 text-sm rounded-md transition-colors duration-200 ${
-                              selectedSchool === school.id 
-                                ? 'bg-accent text-accent-foreground font-medium' 
-                                : 'text-gray-600 hover:bg-gray-100'
-                            }`}
-                          >
-                            {school.name}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Locations Selection */}
-                    <div className="px-3">
-                      <h5 className="text-sm font-medium text-gray-700 mb-2">Locations</h5>
-                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                        {locations[selectedSchool as keyof typeof locations].map((location) => (
-                          <button
-                            key={location.id}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleLocationSelect(location.id);
-                            }}
-                            type="button"
-                            className={`px-3 py-2 text-sm rounded-md transition-colors duration-200 text-center ${
-                              selectedLocation === location.id
-                                ? 'bg-accent text-accent-foreground font-medium'
-                                : 'text-gray-600 hover:bg-gray-100 border border-gray-200'
-                            }`}
-                          >
-                            {location.name}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Batches Selection - FIXED */}
-                    <div className="px-3">
-                      <h5 className="text-sm font-medium text-gray-700 mb-2">Batches</h5>
-                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                        {batches[selectedLocation as keyof typeof batches].map((batch) => (
-                          <button
-                            key={batch}
-                            onClick={(e) => handleBatchClick(e, batch)}
-                            type="button"
-                            className="px-3 py-2 text-sm text-center text-white bg-accent hover:bg-accent-dark rounded-md transition-colors duration-200 font-medium cursor-pointer"
-                          >
-                            {batch} Batch
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="mt-2 space-y-2 px-3">
+                    <p className="text-sm text-gray-600 mb-3">Select a school:</p>
+                    {schools.map((school) => (
+                      <Link
+                        key={school.id}
+                        href={school.href}
+                        onClick={handleSchoolClick}
+                        className="flex items-center justify-between w-full px-4 py-3 text-sm bg-white border border-gray-200 rounded-lg hover:bg-accent/10 hover:border-accent transition-colors duration-200"
+                      >
+                        <span className="font-medium text-gray-700">{school.name}</span>
+                        <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                          {school.shortName}
+                        </span>
+                      </Link>
+                    ))}
+                    <p className="text-xs text-gray-500 mt-3 px-2">
+                      Select a school to view locations and batches
+                    </p>
                   </div>
                 )}
               </div>

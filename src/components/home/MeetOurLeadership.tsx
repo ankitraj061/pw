@@ -11,7 +11,7 @@ const leadership = [
     description:
       'Gold Medalist from IIT-BHU, COO at Physics Wallah, passionate about learning, growth, and revolutionizing education.',
     image: 'https://ik.imagekit.io/s0kb1s3cx3/PWIOI/gopal-min.jpg?updatedAt=1749632398507',
-    linkedin: 'https://linkedin.com/in/gopal-sharma',
+    linkedin: 'https://www.linkedin.com/in/gopal-sharma-344290293',
     isTopLeader: true,
   },
   {
@@ -20,7 +20,7 @@ const leadership = [
     description:
       'AVP at PhysicsWallah, ex-founder of CuriousJr (acquired by PW) and MindOrks, passionate innovator.',
     image: 'https://ik.imagekit.io/s0kb1s3cx3/PWIOI/ali-min.JPG?updatedAt=1749631912662',
-    linkedin: 'https://linkedin.com/in/janishar-ali',
+    linkedin: 'https://www.linkedin.com/in/janishar-ali/',
   },
   {
     name: 'Prakash Nimbalkar',
@@ -28,14 +28,14 @@ const leadership = [
     description:
       'Marketing Consultant, GTM & Startup Advisor, Mentor @ MeitY, NASSCOM, and Visiting Faculty.',
     image: 'https://ik.imagekit.io/s0kb1s3cx3/PWIOI/nimbalkar-min.JPG?updatedAt=1749631912481',
-    linkedin: 'https://linkedin.com/in/prakash-nimbalkar',
+    linkedin: 'https://www.linkedin.com/in/prakash-nimbalkar/',
   },
   {
     name: 'Dr Satishpuri Gosavi',
     role: 'Head, School of Healthcare',
     description: 'TO_BE_ADDED',
     image: '/satishpuri.jpeg',
-    linkedin: '#',
+    linkedin: 'https://www.linkedin.com/in/dr-satishpuri-gosavi-88352656/',
   },
 ];
 
@@ -59,7 +59,7 @@ const MeetOurLeadership = () => {
           
           {/* Featured Leader - Left side, full height */}
           {topLeader && (
-            <div className="w-1/2 bg-gradient-to-br from-white to-cream-warm/30 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10">
+            <div className="w-1/2 bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-primary/10">
               <div className="flex flex-col items-center h-full">
                 <div className="relative mb-8 w-full">
                   <div className="w-full h-64 relative">
@@ -84,7 +84,7 @@ const MeetOurLeadership = () => {
                 </div>
                 
                 <Button
-                  className="mt-auto bg-accent text-accent-foreground hover:bg-accent-dark transition-all duration-200 hover:scale-105 px-8 py-3 text-base"
+                  className="mt-auto bg-accent cursor-pointer text-accent-foreground hover:bg-accent-dark transition-all duration-200 hover:scale-105 px-8 py-3 text-base"
                   onClick={() => window.open(topLeader.linkedin, '_blank')}
                 >
                   Connect on LinkedIn
@@ -121,7 +121,7 @@ const MeetOurLeadership = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-primary/20 text-primary hover:bg-primary hover:text-white transition-all duration-200 hover:scale-105"
+                        className="border-primary/20 text-primary hover:bg-primary hover:text-white transition-all cursor-pointer duration-200 hover:scale-105"
                         onClick={() => window.open(leader.linkedin, '_blank')}
                       >
                         Connect on LinkedIn
