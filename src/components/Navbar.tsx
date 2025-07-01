@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Menu, CircleUser, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +76,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="font-poppins font-bold text-2xl text-primary">
-              <img src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/pwioi.webp?updatedAt=1749631481920" alt="" className="w-30 h-8" />
+              <Image src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/pwioi.webp?updatedAt=1749631481920" alt="" className="w-30 h-8" />
             </Link>
           </div>
 

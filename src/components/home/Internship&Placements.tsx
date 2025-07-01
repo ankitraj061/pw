@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Building2 } from 'lucide-react';
+import Image from 'next/image';
 
 // Define the Student type
 interface Student {
@@ -238,7 +239,7 @@ const InternshipAndPlacements = () => {
     <div className="flex-shrink-0 w-64 sm:w-70 mx-2 sm:mx-4">
       <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group h-72 sm:h-80">
         {/* Background Image */}
-        <img
+        <Image
           src={student.image}
           alt={student.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"

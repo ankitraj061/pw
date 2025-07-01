@@ -1,6 +1,7 @@
 'use client';
 
 import { Calendar, Clock, MapPin, Users, ChevronRight, Star, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
 
 // Define the Event interface
 interface Event {
@@ -147,7 +148,7 @@ const EventsComponent = () => {
         return (
           <div key={event.id} className={`${baseClasses} md:col-span-2 lg:col-span-2`}>
             <div className="relative h-64 overflow-hidden rounded-t-2xl">
-              <img
+              <Image
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -208,7 +209,7 @@ const EventsComponent = () => {
         return (
           <div key={event.id} className={`${baseClasses}`}>
             <div className="relative h-48 overflow-hidden rounded-t-2xl">
-              <img
+              <Image
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -263,7 +264,7 @@ const EventsComponent = () => {
         return (
           <div key={event.id} className={`${baseClasses}`}>
             <div className="relative h-48 overflow-hidden rounded-t-2xl">
-              <img
+              <Image
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -396,7 +397,7 @@ const EventsComponent = () => {
                 >
                   {/* Event Image */}
                   <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} overflow-hidden rounded-t-2xl`}>
-                    <img
+                    <Image
                       src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

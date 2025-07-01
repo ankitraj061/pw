@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MapPin, Users, GraduationCap } from 'lucide-react';
+import Image from 'next/image';
 
 // Import your JSON data
 import BengaluruBatch23SOT from '@/data/bengaluru/students/batch23sot.json';
@@ -327,7 +328,7 @@ const TechnologyPage: React.FC = () => {
                           {/* Image Container */}
                           <div className="relative mb-4">
                             <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-accent/20 shadow-lg group-hover:border-accent transition-all duration-300 group-hover:shadow-xl">
-                              <img
+                              <Image
                                 src={photo}
                                 alt={student.name}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"

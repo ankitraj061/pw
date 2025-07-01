@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Linkedin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MapPin, Users, Briefcase } from 'lucide-react';
+import Image from 'next/image';
 
 import batch23SOM from '@/data/bengaluru/students/batch23som.json';
 import batch24SOM from '@/data/bengaluru/students/batch24som.json';
@@ -326,7 +327,7 @@ const ManagementPage: React.FC = () => {
                           {/* Image Container */}
                           <div className="relative mb-4">
                             <div className="w-24 h-24 mx-auto rounded-full overflow-hidden border-3 border-accent/20 shadow-lg group-hover:border-accent transition-all duration-300 group-hover:shadow-xl">
-                              <img
+                              <Image
                                 src={photo}
                                 alt={student.name}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
