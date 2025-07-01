@@ -2,20 +2,10 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const MeetOurMentors = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const mentors = [
     {
@@ -168,6 +158,9 @@ const MeetOurMentors = () => {
     }
   };
 
+  // Check if we're on mobile for conditional rendering
+  const isMobileView = itemsPerView === 1;
+
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-background text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,8 +189,6 @@ const MeetOurMentors = () => {
               <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
             </button>
           </div>
-
-          
         </div>
 
         {/* Mentors Grid with touch support */}
@@ -215,11 +206,13 @@ const MeetOurMentors = () => {
               {/* Mentor Card */}
               <div className="relative overflow-hidden rounded-2xl hover:scale-105 transition-transform duration-300">
                 <div className="relative h-64 sm:h-72 lg:h-80 rounded-xl overflow-hidden">
-                  {/* Background Image */}
-                  <img
+                  {/* Background Image using Next.js Image component */}
+                  <Image
                     src={mentor.image}
                     alt={mentor.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
                   
@@ -260,22 +253,24 @@ const MeetOurMentors = () => {
         )}
 
         {/* Mobile navigation buttons at bottom */}
-        <div className="flex sm:hidden justify-center gap-4 mt-6">
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= maxIndex}
-            className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
+        {isMobileView && (
+          <div className="flex sm:hidden justify-center gap-4 mt-6">
+            <button
+              onClick={prevSlide}
+              disabled={currentIndex === 0}
+              className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              disabled={currentIndex >= maxIndex}
+              className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
