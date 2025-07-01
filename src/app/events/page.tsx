@@ -1,10 +1,28 @@
 'use client';
 
-
 import { Calendar, Clock, MapPin, Users, ChevronRight, Star, TrendingUp } from 'lucide-react';
 
+// Define the Event interface
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  attendees: number;
+  actualAttendees?: number;
+  category: string;
+  image: string;
+  description: string;
+  status?: string;
+  highlights?: string[];
+  feedback?: number;
+  cardType?: string;
+}
+
 const EventsComponent = () => {
-  const upcomingEvents = [
+  // Explicitly type the empty array
+  const upcomingEvents: Event[] = [
     // {
     //   id: 1,
     //   title: 'Tech Innovation Summit 2025',
@@ -55,7 +73,7 @@ const EventsComponent = () => {
     // }
   ];
 
-  const pastEvents = [
+  const pastEvents: Event[] = [
     {
       id: 5,
       title: 'D2C Hackathon 2024',
@@ -103,7 +121,7 @@ const EventsComponent = () => {
     }
   ];
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch(status) {
       case 'filling-fast': return 'bg-red-100 text-red-700 border-red-200';
       case 'open': return 'bg-green-100 text-green-700 border-green-200';
@@ -111,17 +129,18 @@ const EventsComponent = () => {
     }
   };
 
-  const getCategoryIcon = (category) => {
+  const getCategoryIcon = (category: string) => {
     switch(category) {
       case 'conference': return '🎯';
       case 'workshop': return '🛠️';
       case 'networking': return '🤝';
+      case 'hackathon': return '💻';
       default: return '📅';
     }
   };
 
-  const renderPastEventCard = (event) => {
-    const baseClasses = "group bg-background relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2";
+  const renderPastEventCard = (event: Event) => {
+    const baseClasses = "group bg-white relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2";
     
     switch(event.cardType) {
       case 'featured':
@@ -136,7 +155,7 @@ const EventsComponent = () => {
               <div className="absolute inset-0 bg-black/20" />
               
               {/* Only Featured Badge on image */}
-              <div className="absolute top-4 right-4 bg-accent text-primary px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <div className="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                 <Star className="w-3 h-3" />
                 Featured
               </div>
@@ -148,23 +167,23 @@ const EventsComponent = () => {
             </div>
 
             {/* All content below image */}
-            <div className="p-6 bg-background">
-              <div className="flex items-center gap-2 text-sm  text-secondary mb-3">
+            <div className="p-6 bg-white">
+              <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
                 <Calendar className="w-4 h-4" />
-                <span>{new Date(event.date).toLocaleDateString()}</span>
+                <span>{event.date}</span>
                 <span>•</span>
-                <span className="text-secondary font-medium">{event.category}</span>
+                <span className="text-gray-600 font-medium">{event.category}</span>
                 <span>•</span>
                 <MapPin className="w-4 h-4" />
                 <span>{event.location}</span>
               </div>
               
-              <h3 className="text-2xl font-bold text-primary mb-2">{event.title}</h3>
-              <p className="text-secondary mb-4">{event.description}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">{event.title}</h3>
+              <p className="text-gray-600 mb-4">{event.description}</p>
               
               <div className="flex items-center gap-6">
                 <div className="text-center">
-                  <div className="text-xl font-bold text-primary/80">{event.actualAttendees}</div>
+                  <div className="text-xl font-bold text-gray-800">{event.actualAttendees}</div>
                   <div className="text-xs text-gray-500">Attendees</div>
                 </div>
                 <div className="text-center">
@@ -193,24 +212,24 @@ const EventsComponent = () => {
               </div>
             </div>
             
-            <div className="p-5 bg-background">
-              <div className="flex items-center gap-2 text-xs text-secondary mb-2">
+            <div className="p-5 bg-white">
+              <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                 <Calendar className="w-3 h-3" />
-                <span>{new Date(event.date).toLocaleDateString()}</span>
+                <span>{event.date}</span>
                 <span>•</span>
-                <span className="text-secondary font-medium">{event.category}</span>
+                <span className="text-gray-600 font-medium">{event.category}</span>
               </div>
               
-              <h3 className="text-lg font-bold text-primary mb-2">{event.title}</h3>
-              <p className="text-sm text-secondary mb-3">{event.description}</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
+              <p className="text-sm text-gray-600 mb-3">{event.description}</p>
               
-              <div className="flex items-center gap-1 text-sm text-secondary mb-4">
+              <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
                 <MapPin className="w-4 h-4" />
                 <span>{event.location}</span>
               </div>
               
               <div className="flex items-center gap-4 text-sm">
-                <div className="flex items-center gap-1 text-primary">
+                <div className="flex items-center gap-1 text-gray-700">
                   <Users className="w-4 h-4" />
                   <span className="font-medium">{event.actualAttendees}</span>
                 </div>
@@ -235,7 +254,7 @@ const EventsComponent = () => {
               <div className="absolute inset-0 bg-black/10" />
               
               {/* Only badges on image */}
-              <div className="absolute top-4 right-4 bg-primary text-accent px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                 <TrendingUp className="w-3 h-3" />
                 Top Rated
               </div>
@@ -245,35 +264,35 @@ const EventsComponent = () => {
               </div>
             </div>
 
-            <div className="p-5 bg-background">
-              <div className="flex items-center gap-2 text-xs text-secondary mb-2">
+            <div className="p-5 bg-white">
+              <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                 <Calendar className="w-3 h-3" />
-                <span>{new Date(event.date).toLocaleDateString()}</span>
+                <span>{event.date}</span>
                 <span>•</span>
                 <span className="font-medium">{event.category}</span>
               </div>
               
-              <h3 className="text-lg font-bold text-primary mb-2">{event.title}</h3>
-              <p className="text-secondary text-sm mb-4">{event.description}</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
+              <p className="text-gray-600 text-sm mb-4">{event.description}</p>
               
-              <div className="flex items-center gap-1 text-sm text-secondary mb-4">
+              <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
                 <MapPin className="w-4 h-4" />
                 <span>{event.location}</span>
               </div>
               
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-primary/10 rounded-lg p-3 text-center">
-                  <div className="text-lg font-bold text-primary">{event.actualAttendees}</div>
-                  <div className="text-xs text-secondary">Attendees</div>
+                <div className="bg-blue-50 rounded-lg p-3 text-center">
+                  <div className="text-lg font-bold text-blue-600">{event.actualAttendees}</div>
+                  <div className="text-xs text-gray-500">Attendees</div>
                 </div>
                 <div className="bg-yellow-50 rounded-lg p-3 text-center">
                   <div className="text-lg font-bold text-yellow-600">⭐ {event.feedback}</div>
-                  <div className="text-xs text-secondary">Rating</div>
+                  <div className="text-xs text-gray-500">Rating</div>
                 </div>
-                <div className="bg-accent/20 rounded-lg p-3 text-center">
-                  <div className="text-lg font-bold text-primary">{event.highlights.length}</div>
-                  <div className="text-xs text-secondary">Highlights</div>
+                <div className="bg-green-50 rounded-lg p-3 text-center">
+                  <div className="text-lg font-bold text-green-600">{event.highlights?.length || 0}</div>
+                  <div className="text-xs text-gray-500">Highlights</div>
                 </div>
               </div>
             </div>
@@ -292,91 +311,102 @@ const EventsComponent = () => {
         {/* Upcoming Events Section */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Upcoming Events</h2>
-            <p className="text-lg text-secondary max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Upcoming Events</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Join us for these exciting upcoming events
             </p>
           </div>
 
-          {/* Upcoming Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {upcomingEvents.map((event, index) => (
-              <div
-                key={event.id}
-                className={`group bg-background relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                  index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
-                }`}
-              >
-                {/* Event Image with minimal overlay */}
-                <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} overflow-hidden`}>
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/10" />
-                  
-                  {/* Only essential badges on image */}
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(event.status)}`}>
-                    {event.status === 'filling-fast' ? 'Filling Fast' : 'Open'}
-                  </div>
+          {/* Show message when no upcoming events */}
+          {upcomingEvents.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">📅</div>
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">No Upcoming Events</h3>
+              <p className="text-gray-500">Stay tuned for exciting events coming soon!</p>
+            </div>
+          ) : (
+            /* Upcoming Events Grid */
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {upcomingEvents.map((event, index) => (
+                <div
+                  key={event.id}
+                  className={`group bg-white relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                    index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+                  }`}
+                >
+                  {/* Event Image with minimal overlay */}
+                  <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} overflow-hidden`}>
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-black/10" />
+                    
+                    {/* Only essential badges on image */}
+                    {event.status && (
+                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(event.status)}`}>
+                        {event.status === 'filling-fast' ? 'Filling Fast' : 'Open'}
+                      </div>
+                    )}
 
-                  <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
-                    {getCategoryIcon(event.category)}
-                  </div>
-                </div>
-
-                {/* All content below image */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                    <Calendar className="w-4 h-4" />
-                    <span>{new Date(event.date).toLocaleDateString()}</span>
-                    <span>•</span>
-                    <Clock className="w-4 h-4" />
-                    <span>{event.time}</span>
-                    <span>•</span>
-                    <span className="text-blue-600 font-medium">{event.category}</span>
-                  </div>
-                  
-                  <h3 className={`font-bold text-gray-900 mb-2 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {event.description}
-                  </p>
-                  
-                  <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
-                    <MapPin className="w-4 h-4" />
-                    <span>{event.location}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-sm text-blue-600">
-                      <Users className="w-4 h-4" />
-                      <span className="font-medium">{event.attendees} spots</span>
+                    <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
+                      {getCategoryIcon(event.category)}
                     </div>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2">
-                      Register <ChevronRight className="w-4 h-4" />
-                    </button>
+                  </div>
+
+                  {/* All content below image */}
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
+                      <span>•</span>
+                      <Clock className="w-4 h-4" />
+                      <span>{event.time}</span>
+                      <span>•</span>
+                      <span className="text-blue-600 font-medium">{event.category}</span>
+                    </div>
+                    
+                    <h3 className={`font-bold text-gray-900 mb-2 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4">
+                      {event.description}
+                    </p>
+                    
+                    <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
+                      <MapPin className="w-4 h-4" />
+                      <span>{event.location}</span>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-sm text-blue-600">
+                        <Users className="w-4 h-4" />
+                        <span className="font-medium">{event.attendees} spots</span>
+                      </div>
+                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2">
+                        Register <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Past Events Section */}
         <div>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Past Events</h2>
-            <p className="text-lg text-secondary max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Past Events</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Relive the memories and see what made these events special
             </p>
           </div>
 
           {/* Past Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pastEvents.map((event, index) => renderPastEventCard(event, index))}
+            {pastEvents.map((event) => renderPastEventCard(event))}
           </div>
         </div>
       </div>
