@@ -45,7 +45,7 @@ const ClubPage = () => {
       icon: Code,
       image: '/techclub.avif',
       logo: "https://ik.imagekit.io/s0kb1s3cx3/PWIOI/techclublogo.jpg?updatedAt=1751290850316",
-      bgColor: 'bg-blue-50',
+      bgColor: 'bg-cream-warm/20',
       color: 'from-blue-600 to-blue-800',
       description: 'Innovating the future through technology and programming excellence',
       head: {
@@ -78,7 +78,7 @@ const ClubPage = () => {
       icon: Heart,
       image: '/socialwelfare.avif',
       logo: 'https://ik.imagekit.io/s0kb1s3cx3/PWIOI/ehsaas.jpg?updatedAt=1751273652766',
-      bgColor: 'bg-green-50',
+      bgColor: 'bg-cream-warm/20',
       color: 'from-green-600 to-green-800',
       description: 'Creating positive impact through community service and social responsibility',
       head: {
@@ -114,7 +114,7 @@ const ClubPage = () => {
       name: 'Cultural Club',
       icon: Palette,
       image: '/cultural.avif',
-      bgColor: 'bg-pink-50',
+      bgColor: 'bg-cream-warm/20',
       color: 'from-pink-600 to-pink-800',
       description: 'Celebrating diversity and fostering artistic expression through vibrant cultural events',
       head: {
@@ -146,7 +146,7 @@ const ClubPage = () => {
       name: 'Creators Club',
       icon: Users,
       image: '/creators.avif',
-      bgColor: 'bg-orange-50',
+      bgColor: 'bg-cream-warm/20',
       color: 'from-orange-600 to-orange-800',
       description: 'Nurturing creative minds through digital innovation and multimedia excellence',
       head: {
@@ -179,7 +179,7 @@ const ClubPage = () => {
       name: 'Sports Club',
       icon: Trophy,
       image: '/sports.avif',
-      bgColor: 'bg-red-50',
+      bgColor: 'bg-cream-warm/20',
       color: 'from-red-600 to-red-800',
       description: 'Building champions through athletic excellence, teamwork, and sportsmanship',
       head: {
@@ -213,10 +213,10 @@ const ClubPage = () => {
     const IconComponent = club.icon;
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-gradient-to-br from-cream-base to-cream-warm">
         {/* Header */}
         <div className={`bg-gradient-to-r ${club.color} text-white py-20 relative overflow-hidden`}>
-          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <button 
               onClick={() => setSelectedClub(null)}
@@ -240,8 +240,8 @@ const ClubPage = () => {
                 )}
               </div>
               <div className="space-y-4">
-                <h1 className="font-bold text-5xl lg:text-6xl leading-tight">{club.name}</h1>
-                <p className="text-xl text-secondary lg:text-2xl text-white/90 max-w-3xl leading-relaxed">
+                <h1 className="font-poppins font-bold text-5xl lg:text-6xl leading-tight">{club.name}</h1>
+                <p className="font-open-sans text-xl lg:text-2xl text-white/90 max-w-3xl leading-relaxed">
                   {club.description}
                 </p>
               </div>
@@ -254,22 +254,22 @@ const ClubPage = () => {
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* Club Head */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-                <h2 className="font-bold text-3xl mb-8 text-gray-800">Club Leadership</h2>
-                <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-xl border border-gray-200">
+              <div className="bg-cream-base/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-cream-warm/30">
+                <h2 className="font-poppins font-bold text-3xl mb-8 text-primary">Club Leadership</h2>
+                <div className="bg-white/70 backdrop-blur-sm p-8 rounded-xl border border-cream-warm/30">
                   <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-24 h-24 bg-gradient-to-br from-secondary to-accent rounded-full flex items-center justify-center shadow-lg">
                       <span className="text-2xl font-bold text-white">
                         {club.head.name.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
                     <div className="flex-1 space-y-3">
-                      <h3 className="font-bold text-2xl text-gray-800">{club.head.name}</h3>
-                      <p className="text-lg text-blue-600 font-medium">{club.head.position}</p>
-                      <div className="space-y-2 text-gray-600">
+                      <h3 className="font-poppins font-bold text-2xl text-primary">{club.head.name}</h3>
+                      <p className="font-open-sans text-lg text-secondary font-medium">{club.head.position}</p>
+                      <div className="space-y-2 text-primary/70">
                         <div className="flex items-center gap-3">
-                          <Mail size={18} className="text-orange-500" />
-                          <span>{club.head.email}</span>
+                          <Mail size={18} className="text-accent" />
+                          <span className="font-open-sans">{club.head.email}</span>
                         </div>
                       </div>
                     </div>
@@ -278,22 +278,22 @@ const ClubPage = () => {
               </div>
 
               {/* Core Members */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-                <h2 className="font-bold text-3xl mb-8 text-gray-800">Core Team</h2>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-cream-warm/30">
+                <h2 className="font-poppins font-bold text-3xl mb-8 text-primary">Core Team</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {club.coreMembers.map((member, index) => (
-                    <div key={index} className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border border-gray-200 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div key={index} className="p-6 bg-gradient-to-br from-cream-base/50 to-cream-warm/30 backdrop-blur-sm rounded-xl border border-cream-warm/30 hover:shadow-lg transition-all duration-300 hover:scale-105">
                       <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-md">
+                        <div className="w-16 h-16 bg-gradient-to-br from-accent to-secondary rounded-full flex items-center justify-center shadow-md">
                           <span className="text-sm font-bold text-white">
                             {member.name.split(' ').map(n => n[0]).join('')}
                           </span>
                         </div>
                         <div className="flex-1 space-y-2">
-                          <h4 className="font-semibold text-lg text-gray-800">{member.name}</h4>
-                          <p className="text-blue-600 font-medium">{member.position}</p>
+                          <h4 className="font-poppins font-semibold text-lg text-primary">{member.name}</h4>
+                          <p className="font-open-sans text-secondary font-medium">{member.position}</p>
                           {member.specialty && (
-                            <p className="text-sm text-gray-500">{member.specialty}</p>
+                            <p className="font-open-sans text-sm text-primary/60">{member.specialty}</p>
                           )}
                         </div>
                       </div>
@@ -303,13 +303,13 @@ const ClubPage = () => {
               </div>
 
               {/* Activities */}
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-                <h2 className="font-bold text-3xl mb-8 text-gray-800">Our Activities</h2>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-cream-warm/30">
+                <h2 className="font-poppins font-bold text-3xl mb-8 text-primary">Our Activities</h2>
                 <div className="space-y-4">
                   {club.activities.map((activity, index) => (
-                    <div key={index} className="flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-200 hover:shadow-md transition-all duration-300">
+                    <div key={index} className="flex items-start gap-4 p-4 bg-gradient-to-r from-cream-base/40 to-cream-warm/20 backdrop-blur-sm rounded-lg border border-cream-warm/30 hover:shadow-md transition-all duration-300">
                       <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${club.color} mt-2 shadow-sm`}></div>
-                      <span className="text-gray-800 leading-relaxed">{activity}</span>
+                      <span className="font-open-sans text-primary leading-relaxed">{activity}</span>
                     </div>
                   ))}
                 </div>
@@ -319,51 +319,51 @@ const ClubPage = () => {
             {/* Sidebar */}
             <div className="space-y-8">
               {/* Recent Events */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-                <h3 className="font-bold text-xl mb-6 text-gray-800">Recent Events</h3>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-cream-warm/30">
+                <h3 className="font-poppins font-bold text-xl mb-6 text-primary">Recent Events</h3>
                 <div className="space-y-4">
                   {club.recentEvents.map((event, index) => (
-                    <div key={index} className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200">
-                      <div className="flex items-center gap-2 text-sm text-orange-600 mb-2">
+                    <div key={index} className="p-4 bg-gradient-to-br from-cream-base/40 to-cream-warm/20 backdrop-blur-sm rounded-lg border border-cream-warm/30">
+                      <div className="flex items-center gap-2 text-sm text-accent mb-2">
                         <Calendar size={16} />
-                        <span>Recent Event</span>
+                        <span className="font-open-sans">Recent Event</span>
                       </div>
-                      <p className="font-medium text-gray-800">{event}</p>
+                      <p className="font-poppins font-medium text-primary">{event}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Activity Gallery */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-                <h3 className="font-bold text-xl mb-6 text-gray-800">Activity Gallery</h3>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-cream-warm/30">
+                <h3 className="font-poppins font-bold text-xl mb-6 text-primary">Activity Gallery</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-lg flex items-center justify-center hover:shadow-md transition-all duration-300">
-                      <span className="text-gray-500 text-xs">Activity Photo {i}</span>
+                    <div key={i} className="aspect-square bg-gradient-to-br from-cream-base/40 to-cream-warm/20 backdrop-blur-sm border border-cream-warm/30 rounded-lg flex items-center justify-center hover:shadow-md transition-all duration-300">
+                      <span className="font-open-sans text-primary/60 text-xs">Activity Photo {i}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 mt-4 text-center">
+                <p className="font-open-sans text-sm text-primary/70 mt-4 text-center">
                   Memories from our recent events and activities
                 </p>
               </div>
 
               {/* Quick Stats */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-                <h3 className="font-bold text-xl mb-6 text-gray-800">Club Statistics</h3>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-cream-warm/30">
+                <h3 className="font-poppins font-bold text-xl mb-6 text-primary">Club Statistics</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
-                    <span className="text-gray-700">Active Members</span>
-                    <span className="font-bold text-blue-600">180+</span>
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-cream-base/40 to-cream-warm/20 backdrop-blur-sm rounded-lg">
+                    <span className="font-open-sans text-primary">Active Members</span>
+                    <span className="font-poppins font-bold text-secondary">180+</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
-                    <span className="text-gray-700">Events This Year</span>
-                    <span className="font-bold text-blue-600">10+</span>
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-cream-base/40 to-cream-warm/20 backdrop-blur-sm rounded-lg">
+                    <span className="font-open-sans text-primary">Events This Year</span>
+                    <span className="font-poppins font-bold text-secondary">10+</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
-                    <span className="text-gray-700">Established</span>
-                    <span className="font-bold text-blue-600">2023</span>
+                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-cream-base/40 to-cream-warm/20 backdrop-blur-sm rounded-lg">
+                    <span className="font-open-sans text-primary">Established</span>
+                    <span className="font-poppins font-bold text-secondary">2023</span>
                   </div>
                 </div>
               </div>
@@ -375,17 +375,17 @@ const ClubPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-cream-base to-cream-warm">
       {/* Hero Section */}
-      <section className="relative py-16 lg:py-15 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10"></div>
+      <section className="relative py-16 lg:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-cream-warm/30 to-cream-base/40"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-6">
-            <h1 className="font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">
+          <div className="space-y-6 animate-fade-in">
+            <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">
               Student Clubs at{' '}
               <span className="text-secondary">PWIOI</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+            <p className="font-open-sans text-lg md:text-xl text-primary/80 leading-relaxed max-w-4xl mx-auto">
               Discover your passion, build lifelong connections, and make a meaningful impact. 
               Join our vibrant student community and become part of something extraordinary.
             </p>
@@ -399,11 +399,11 @@ const ClubPage = () => {
               { number: '50+', label: 'Annual Events' },
               { number: '10+', label: 'Awards Won' },
             ].map((stat, i) => (
-              <div key={i} className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-gray-200">
-                <div className="font-bold text-2xl md:text-3xl text-secondary mb-1">
+              <div key={i} className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-cream-warm/30 shadow-lg">
+                <div className="font-poppins font-bold text-2xl md:text-3xl text-secondary mb-1">
                   {stat.number}
                 </div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
+                <div className="font-open-sans text-sm text-primary/70">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -422,9 +422,9 @@ const ClubPage = () => {
                   onClick={() => setSelectedClub(key)}
                   className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
                 >
-                  <div className="bg-background rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-200">
-                    {/* Card Header */}
-                    <div className="relative h-40 overflow-hidden rounded-t-2xl">
+                  <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-cream-warm/30 h-[480px] flex flex-col">
+                    {/* Card Header - Fixed Height */}
+                    <div className="relative h-40 overflow-hidden rounded-t-2xl flex-shrink-0">
                       <Image
                         src={club.image}
                         alt={`${club.name} Banner`}
@@ -438,13 +438,13 @@ const ClubPage = () => {
                           }
                         }}
                       />
-                      <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                        <IconComponent size={48} className="text-gray-400" />
+                      <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-cream-base/80 to-cream-warm/60">
+                        <IconComponent size={48} className="text-primary/60" />
                       </div>
                     </div>
 
-                    {/* Card Content */}
-                    <div className="p-8">
+                    {/* Card Content - Flexible Height */}
+                    <div className="p-8 flex-1 flex flex-col">
                       <div className="flex items-center gap-4 mb-4">
                         {club.logo ? (
                           <Image 
@@ -464,31 +464,34 @@ const ClubPage = () => {
                         ) : null}
                         <IconComponent 
                           size={32} 
-                          className={`text-gray-600 ${club.logo ? 'hidden' : 'block'}`} 
+                          className={`text-primary ${club.logo ? 'hidden' : 'block'}`} 
                         />
-                        <h3 className="font-bold text-2xl text-primary transition-colors">
+                        <h3 className="font-poppins font-bold text-xl text-primary transition-colors leading-tight">
                           {club.name}
                         </h3>
                       </div>
-                      <p className="text-secondary mb-6 leading-relaxed">
-                        {club.description}
+                      
+                      {/* Description - Fixed Height with Ellipsis */}
+                      <p className="font-open-sans text-primary/80 mb-6 leading-relaxed flex-1 overflow-hidden">
+                        <span className="line-clamp-3">
+                          {club.description}
+                        </span>
                       </p>
 
-                      {/* Quick Info */}
+                      {/* Quick Info - Fixed Height */}
                       <div className="space-y-3 mb-6">
-                        <div className="flex items-center gap-3 text-sm text-gray-500">
-                          <Calendar size={18} className="text-primary" />
-                          <span>Regular Events & Activities</span>
+                        <div className="flex items-center gap-3 text-sm text-primary/60">
+                          <Calendar size={18} className="text-accent" />
+                          <span className="font-open-sans">Regular Events & Activities</span>
                         </div>
                       </div>
 
-                      {/* Action Button */}
-                      <button className="w-full bg-accent hover:bg-primary text-primary hover:text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-md">
+                      {/* Action Button - Fixed Position */}
+                      <button className="w-full bg-accent hover:bg-accent-dark text-accent-foreground font-poppins font-medium py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-md mt-auto">
                         Explore Club Details
                       </button>
                     </div>
                   </div>
-
                 </div>
               );
             })}
