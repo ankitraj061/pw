@@ -242,6 +242,7 @@ const InternshipAndPlacements = () => {
         <Image
           src={student.image}
           alt={student.name}
+          fill
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
         

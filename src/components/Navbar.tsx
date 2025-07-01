@@ -75,10 +75,17 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="font-poppins font-bold text-2xl text-primary">
-              <Image src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/pwioi.webp?updatedAt=1749631481920" alt="" className="w-30 h-8" />
-            </Link>
-          </div>
+  <Link href="/">
+    <Image 
+      src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/pwioi.webp?updatedAt=1749631481920" 
+      alt="PWIOI logo" 
+      width={100} 
+      height={30} 
+      className="font-poppins font-bold text-2xl text-primary"
+    />
+  </Link>
+</div>
+
 
           {/* Desktop Menu */}
           <div className="hidden md:block">
