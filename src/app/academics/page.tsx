@@ -13,7 +13,6 @@ const AcademicsPage = () => {
     { icon: BookOpen, number: '3', label: 'Programs', color: 'text-primary' },
     { icon: Users, number: '20+', label: 'Faculty', color: 'text-primary' },
     { icon: Award, number: '90%', label: 'Placement', color: 'text-primary' },
-    { icon: TrendingUp, number: '₹12.5L', label: 'Avg Package', color: 'text-primary' }
   ];
 
   const schools = {
@@ -35,10 +34,8 @@ const AcademicsPage = () => {
       title: 'School of Healthcare',
       icon: Stethoscope,
       description: 'Advancing healthcare education with modern medical facilities and research.',
-      departments: ['Medicine (MBBS)', 'Nursing', 'Pharmacy', 'Medical Lab Tech', 'Physiotherapy', 'Hospital Admin'],
-      placementRate: '92%',
-      avgPackage: '₹8.5L',
-      recruiters: ['Apollo', 'Fortis', 'Max Healthcare', 'AIIMS', 'Medanta']
+      departments: ['B.Voc. in Medical Lab Technology', 'B.Voc. in Medical Theatre Technology', 'B.Voc. in Radiology & Medical Imaging Technology', 'B.Voc. in Dialysis Care Technology'],
+      recruiters: []
     }
   };
 
@@ -57,8 +54,8 @@ const AcademicsPage = () => {
   ];
 
   const placementStats = [
-    { icon: TrendingUp, value: '₹45 LPA', label: 'Highest Package' },
-    { icon: DollarSign, value: '₹12.5 LPA', label: 'Average Package' },
+    { icon: TrendingUp, value: 'NaN', label: 'NaN' },
+    { icon: DollarSign, value: 'NaN', label: 'Average Package' },
     { icon: Building, value: '150+', label: 'Companies' },
     { icon: Award, value: '2,500+', label: 'Job Offers' }
   ];
@@ -75,18 +72,23 @@ const AcademicsPage = () => {
             Empowering minds through innovative education, cutting-edge research, and industry-relevant curriculum.
           </p>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16 max-w-5xl mx-auto">
-            {stats.map((stat, i) => {
-              const IconComponent = stat.icon;
-              return (
-                <div key={i} className="p-6 bg-white/70 rounded-2xl hover:scale-105 transition-all duration-300">
-                  <IconComponent size={32} className={`${stat.color} mx-auto mb-3`} />
+            <div className="flex justify-center mt-16">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl w-full">
+              {stats.map((stat, i) => {
+                const IconComponent = stat.icon;
+                return (
+                <div
+                  key={i}
+                  className="p-6 bg-white/70 rounded-2xl hover:scale-105 transition-all duration-300 flex flex-col items-center text-center"
+                >
+                  <IconComponent size={32} className={`${stat.color} mb-3`} />
                   <div className="font-bold text-2xl mb-1 text-primary">{stat.number}</div>
                   <div className="text-sm text-primary opacity-70">{stat.label}</div>
                 </div>
-              );
-            })}
-          </div>
+                );
+              })}
+              </div>
+            </div>
         </div>
       </section>
 
@@ -146,21 +148,6 @@ const AcademicsPage = () => {
                     <span className="text-sm text-blue-900">{dept}</span>
                   </div>
                 ))}
-              </div>
-
-              <div className="grid grid-cols-2 gap-6 p-6 bg-blue-50 rounded-xl">
-                <div className="text-center">
-                  <div className="font-bold text-2xl text-primary">
-                    {schools[activeSchool].placementRate}
-                  </div>
-                  <div className="text-sm text-blue-900 opacity-70">Placement Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-bold text-2xl text-primary">
-                    {schools[activeSchool].avgPackage}
-                  </div>
-                  <div className="text-sm text-blue-900 opacity-70">Average Package</div>
-                </div>
               </div>
             </div>
 

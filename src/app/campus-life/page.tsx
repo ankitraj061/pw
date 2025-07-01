@@ -30,7 +30,7 @@ const CampusLifePage = () => {
   const campusStats = [
     { icon: Users, number: '300+', label: 'Students', color: 'text-secondary' },
     { icon: Globe, number: '6+', label: 'States Represented', color: 'text-secondary' },
-    { icon: Building, number: '1', label: 'Hostel', color: 'text-secondary' },
+    { icon: Building, number: '3', label: 'Hostel', color: 'text-secondary' },
     { icon: Trophy, number: '5+', label: 'Sports Facilities', color: 'text-secondary' }
   ];
 
@@ -49,15 +49,14 @@ const CampusLifePage = () => {
   ];
 
   const sportsFeatures = [
-    { icon: Trophy, title: 'Olympic-Size Pool', description: 'Professional swimming facility with coaching' },
-    { icon: Dumbbell, title: 'Modern Gymnasium', description: 'State-of-the-art equipment and fitness programs' },
-    { icon: Gamepad2, title: 'Indoor Sports Complex', description: 'Basketball, badminton, table tennis, and more' },
-    { icon: Music, title: 'Outdoor Grounds', description: 'Football, cricket, tennis, and athletics track' }
+    { icon: Dumbbell, title: 'Modern Gym', description: 'State-of-the-art equipment and fitness programs' },
+    { icon: Gamepad2, title: 'Indoor Sports', description: 'badminton, table tennis, and more' },
+    { icon: Music, title: 'Outdoor Grounds', description: 'Football, cricket, tennis, and more' }
   ];
 
   const infrastructureHighlights = [
     { title: 'Smart Classrooms', description: 'Interactive digital learning environments', image: 'classroom' },
-    { title: 'Research Labs', description: 'Cutting-edge facilities for innovation', image: 'lab' },
+    { title: 'Modern Studios', description: 'Cutting-edge facilities for innovation', image: 'lab' },
     { title: 'Central Library', description: '24/7 access to vast digital and physical resources', image: 'library' },
     { title: 'Innovation Hub', description: 'Maker spaces and startup incubation center', image: 'innovation' }
   ];
@@ -72,9 +71,9 @@ const CampusLifePage = () => {
   const studentVlogs = [
     { 
       title: 'A Day in My Life at PWIOI Hostel', 
-      creator: 'Priya Sharma - CSE 3rd Year',
-      views: '25.4K',
-      duration: '8:32',
+      creator: 'Nimish Agarwal -SOT 1st Year',
+      views: '3.4K+',
+      duration: '4:02',
       thumbnail: 'hostel-vlog'
     },
     { 
@@ -138,49 +137,58 @@ const CampusLifePage = () => {
       {/* Campus Diversity Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary">
-                  Diversity & Inclusion
-                </h2>
-                <p className="font-open-sans text-lg text-primary/80 leading-relaxed">
-                  Our campus is a melting pot of cultures, ideas, and perspectives. Students from across 
-                  India and around the world come together to create a truly global learning environment.
-                </p>
+              <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary">
+                Diversity & Inclusion
+              </h2>
+              <p className="font-open-sans text-lg text-primary/80 leading-relaxed">
+                Our campus is a melting pot of cultures, ideas, and perspectives. Students from across 
+                India and around the world come together to create a truly global learning environment.
+              </p>
               </div>
               
               <div className="grid grid-cols-2 gap-6">
-                {diversityStats.map((stat, index) => (
-                  <div key={index} className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-4 h-4 ${stat.color} rounded-full`}></div>
-                      <span className="font-poppins font-bold text-2xl text-secondary">
-                        {stat.percentage}
-                      </span>
-                    </div>
-                    <p className="font-open-sans text-primary/70">{stat.label}</p>
-                  </div>
-                ))}
+              {diversityStats.map((stat, index) => (
+                <div key={index} className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className={`w-4 h-4 ${stat.color} rounded-full`}></div>
+                  <span className="font-poppins font-bold text-2xl text-secondary">
+                  {stat.percentage}
+                  </span>
+                </div>
+                <p className="font-open-sans text-primary/70">{stat.label}</p>
+                </div>
+              ))}
               </div>
               
               <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-cream-base to-cream-warm rounded-xl">
-                <Heart className="text-accent" size={24} />
-                <span className="font-open-sans text-primary">
-                  <strong>Cultural Unity at PWIOI - </strong> 5+ cultural organizations celebrating diversity
-                </span>
+              <Heart className="text-accent" size={24} />
+              <span className="font-open-sans text-primary">
+                <strong>Cultural Unity at PWIOI - </strong>  cultural organizations celebrating diversity
+              </span>
               </div>
             </div>
             
             <div className="relative">
-              <div className="aspect-video bg-gradient-to-br from-secondary/20 to-accent/20 rounded-2xl flex items-center justify-center shadow-lg">
-                <PlayCircle size={70} className="text-accent opacity-80 hover:opacity-100 cursor-pointer transition-opacity" />
+              <div className="aspect-video w-full rounded-2xl shadow-lg bg-black overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/xL8op-oqRTg"
+                title="Campus Diversity Showcase"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full rounded-2xl"
+              ></iframe>
               </div>
               <p className="font-open-sans text-center text-primary/70 mt-4">
-                Campus Diversity Showcase - Click to watch
+              Campus Diversity Showcase
               </p>
             </div>
-          </div>
+            </div>
         </div>
       </section>
 
@@ -279,8 +287,8 @@ const CampusLifePage = () => {
                   <div className="bg-gradient-to-r from-cream-base to-cream-warm p-4 rounded-xl">
                     <h4 className="font-poppins font-semibold text-primary mb-2">Meal Timings</h4>
                     <div className="font-open-sans text-sm text-primary/70 space-y-1">
-                      <p>Breakfast: 7:30 AM - 9:30 AM</p>
-                      <p>Lunch: 12:00 PM - 2:00 PM</p>
+                      <p>Breakfast: 7:00 AM - 8:00 AM</p>
+                      <p>Lunch: 12:15 PM - 2:30 PM</p>
                       <p>Dinner: 7:00 PM - 9:00 PM</p>
                     </div>
                   </div>
@@ -296,31 +304,33 @@ const CampusLifePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary mb-4">
-              World-Class Sports Facilities
+            Sports Facilities
             </h2>
             <p className="font-open-sans text-lg text-primary/80 max-w-3xl mx-auto">
               Stay fit, competitive, and healthy with our comprehensive sports infrastructure and professional coaching.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {sportsFeatures.map((feature, index) => {
+            <div className="flex justify-center mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {sportsFeatures.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
-                <div key={index} className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <div className="bg-blue-100 to-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <IconComponent size={32} className="text-primary" />
-                  </div>
-                  <h4 className="font-poppins font-semibold text-lg text-primary mb-2">
-                    {feature.title}
-                  </h4>
-                  <p className="font-open-sans text-primary/70 text-sm">
-                    {feature.description}
-                  </p>
+                <div key={index} className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex flex-col items-center">
+                <div className="bg-blue-100 to-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <IconComponent size={32} className="text-primary" />
+                </div>
+                <h4 className="font-poppins font-semibold text-lg text-primary mb-2">
+                  {feature.title}
+                </h4>
+                <p className="font-open-sans text-primary/70 text-sm">
+                  {feature.description}
+                </p>
                 </div>
               );
-            })}
-          </div>
+              })}
+            </div>
+            </div>
           
           <div className="aspect-video bg-gradient-to-br from-green-100 to-teal-200 rounded-xl flex items-center justify-center shadow-lg">
             <PlayCircle size={60} className="text-green-600 opacity-80 hover:opacity-100 cursor-pointer transition-opacity" />
@@ -426,14 +436,14 @@ const CampusLifePage = () => {
                   </p>
                   <div className="flex items-center justify-between text-xs font-open-sans text-primary/60">
                     <span>{vlog.views} views</span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex item</div>s-center gap-1">
                       <Play size={12} />
                       Watch Now
                     </span>
                   </div>
                 </div>
               </div>
-            ))}
+           ))}
           </div>
         </div>
       </section>

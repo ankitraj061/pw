@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-cream-base to-cream-warm flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[90vh] rounded-2xl overflow-hidden shadow-lg mx-auto">
         <video
           autoPlay
           muted
@@ -15,17 +15,17 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
         >
           <source
-            src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/PW%20IOI%20Snippet%20F1.mp4?updatedAt=1751269072192"
-            type="video/mp4"
+        src="https://ik.imagekit.io/s0kb1s3cx3/PWIOI/PW%20IOI%20Snippet%20F1.mp4?updatedAt=1751269072192"
+        type="video/mp4"
           />
           Your browser does not support the video tag.
         </video>
 
         {/* Existing gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cream-base/80 to-cream-warm/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-cream-base/80 to-cream-warm/10 rounded-2xl" />
 
         {/* New slight blackish overlay */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-black/30 rounded-2xl" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
