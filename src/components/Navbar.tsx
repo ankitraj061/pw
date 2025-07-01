@@ -55,21 +55,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Handle scroll to close mobile menu
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isMenuOpen) {
-        setIsMenuOpen(false);
-        setIsMobileStudentsOpen(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isMenuOpen]);
-
   // Close mobile menu when menu is opened
   useEffect(() => {
     if (isMenuOpen) {
