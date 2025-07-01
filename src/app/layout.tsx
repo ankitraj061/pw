@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "PWIOI College",
+  title: "PW Institute of Innovation",
   description: "Official website of Physics Wallah Institute of Innovation",
 };
 

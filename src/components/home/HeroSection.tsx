@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-cream-base to-cream-warm flex items-center justify-center overflow-hidden">
       {/* Background Video */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[90vh] rounded-2xl overflow-hidden shadow-lg mx-auto">
+      <div className="absolute left-1/2 -translate-x-1/2 w-full rounded-2xl overflow-hidden shadow-lg mx-auto">
         <video
           autoPlay
           muted

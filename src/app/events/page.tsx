@@ -125,7 +125,7 @@ const EventsComponent = () => {
     switch(status) {
       case 'filling-fast': return 'bg-red-100 text-red-700 border-red-200';
       case 'open': return 'bg-green-100 text-green-700 border-green-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
+      default: return 'bg-cream-warm/20 text-primary border-cream-warm/30';
     }
   };
 
@@ -140,55 +140,64 @@ const EventsComponent = () => {
   };
 
   const renderPastEventCard = (event: Event) => {
-    const baseClasses = "group bg-white relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2";
+    const baseClasses = "group bg-white/70 backdrop-blur-sm relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-cream-warm/30";
     
     switch(event.cardType) {
       case 'featured':
         return (
           <div key={event.id} className={`${baseClasses} md:col-span-2 lg:col-span-2`}>
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-64 overflow-hidden rounded-t-2xl">
               <img
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  if (target.nextSibling) {
+                    (target.nextSibling as HTMLElement).style.display = 'flex';
+                  }
+                }}
               />
+              <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-cream-base/80 to-cream-warm/60">
+                <Calendar size={48} className="text-primary/60" />
+              </div>
               <div className="absolute inset-0 bg-black/20" />
               
-              {/* Only Featured Badge on image */}
-              <div className="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
                 <Star className="w-3 h-3" />
                 Featured
               </div>
               
-              {/* Category Icon */}
-              <div className="absolute top-4 left-4 text-xl bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
+              <div className="absolute top-4 left-4 text-xl bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-md">
                 {getCategoryIcon(event.category)}
               </div>
             </div>
 
-            {/* All content below image */}
-            <div className="p-6 bg-white">
-              <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                <Calendar className="w-4 h-4" />
-                <span>{event.date}</span>
+            <div className="p-8">
+              <div className="flex items-center gap-2 text-sm text-primary/60 mb-4">
+                <Calendar className="w-4 h-4 text-accent" />
+                <span className="font-open-sans">{event.date}</span>
                 <span>•</span>
-                <span className="text-gray-600 font-medium">{event.category}</span>
+                <span className="text-secondary font-medium font-open-sans">{event.category}</span>
                 <span>•</span>
-                <MapPin className="w-4 h-4" />
-                <span>{event.location}</span>
+                <MapPin className="w-4 h-4 text-accent" />
+                <span className="font-open-sans">{event.location}</span>
               </div>
               
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{event.title}</h3>
-              <p className="text-gray-600 mb-4">{event.description}</p>
+              <h3 className="font-poppins font-bold text-2xl text-primary mb-3">{event.title}</h3>
+              <p className="font-open-sans text-primary/80 mb-6 leading-relaxed">{event.description}</p>
               
-              <div className="flex items-center gap-6">
-                <div className="text-center">
-                  <div className="text-xl font-bold text-gray-800">{event.actualAttendees}</div>
-                  <div className="text-xs text-gray-500">Attendees</div>
+              <div className="flex items-center gap-8">
+                <div className="text-center p-4 bg-gradient-to-br from-cream-base/40 to-cream-warm/20 rounded-xl border border-cream-warm/30">
+                  <div className="font-poppins font-bold text-2xl text-secondary">{event.actualAttendees}</div>
+                  <div className="font-open-sans text-xs text-primary/60">Attendees</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-yellow-600">⭐ {event.feedback}</div>
-                  <div className="text-xs text-gray-500">Rating</div>
+                <div className="text-center p-4 bg-gradient-to-br from-cream-base/40 to-cream-warm/20 rounded-xl border border-cream-warm/30">
+                  <div className="font-poppins font-bold text-2xl text-accent flex items-center justify-center gap-1">
+                    <Star className="w-5 h-5" /> {event.feedback}
+                  </div>
+                  <div className="font-open-sans text-xs text-primary/60">Rating</div>
                 </div>
               </div>
             </div>
@@ -198,44 +207,52 @@ const EventsComponent = () => {
       case 'minimal':
         return (
           <div key={event.id} className={`${baseClasses}`}>
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-48 overflow-hidden rounded-t-2xl">
               <img
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  if (target.nextSibling) {
+                    (target.nextSibling as HTMLElement).style.display = 'flex';
+                  }
+                }}
               />
-              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-cream-base/80 to-cream-warm/60">
+                <Calendar size={32} className="text-primary/60" />
+              </div>
               
-              {/* Only category icon on image */}
-              <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
+              <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center shadow-md">
                 {getCategoryIcon(event.category)}
               </div>
             </div>
             
-            <div className="p-5 bg-white">
-              <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-                <Calendar className="w-3 h-3" />
-                <span>{event.date}</span>
+            <div className="p-6">
+              <div className="flex items-center gap-2 text-xs text-primary/60 mb-3">
+                <Calendar className="w-3 h-3 text-accent" />
+                <span className="font-open-sans">{event.date}</span>
                 <span>•</span>
-                <span className="text-gray-600 font-medium">{event.category}</span>
+                <span className="text-secondary font-medium font-open-sans">{event.category}</span>
               </div>
               
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
-              <p className="text-sm text-gray-600 mb-3">{event.description}</p>
+              <h3 className="font-poppins font-bold text-lg text-primary mb-3">{event.title}</h3>
+              <p className="font-open-sans text-sm text-primary/80 mb-4 leading-relaxed">{event.description}</p>
               
-              <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
-                <MapPin className="w-4 h-4" />
-                <span>{event.location}</span>
+              <div className="flex items-center gap-1 text-sm text-primary/60 mb-4">
+                <MapPin className="w-4 h-4 text-accent" />
+                <span className="font-open-sans">{event.location}</span>
               </div>
               
               <div className="flex items-center gap-4 text-sm">
-                <div className="flex items-center gap-1 text-gray-700">
-                  <Users className="w-4 h-4" />
-                  <span className="font-medium">{event.actualAttendees}</span>
+                <div className="flex items-center gap-1 text-primary">
+                  <Users className="w-4 h-4 text-accent" />
+                  <span className="font-open-sans font-medium">{event.actualAttendees}</span>
                 </div>
-                <div className="flex items-center gap-1 text-yellow-600">
+                <div className="flex items-center gap-1 text-accent">
                   <Star className="w-4 h-4" />
-                  <span className="font-medium">{event.feedback}</span>
+                  <span className="font-open-sans font-medium">{event.feedback}</span>
                 </div>
               </div>
             </div>
@@ -245,54 +262,63 @@ const EventsComponent = () => {
       case 'stats':
         return (
           <div key={event.id} className={`${baseClasses}`}>
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-48 overflow-hidden rounded-t-2xl">
               <img
                 src={event.image}
                 alt={event.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  if (target.nextSibling) {
+                    (target.nextSibling as HTMLElement).style.display = 'flex';
+                  }
+                }}
               />
-              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-cream-base/80 to-cream-warm/60">
+                <Calendar size={32} className="text-primary/60" />
+              </div>
               
-              {/* Only badges on image */}
-              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-md">
                 <TrendingUp className="w-3 h-3" />
                 Top Rated
               </div>
               
-              <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
+              <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center shadow-md">
                 {getCategoryIcon(event.category)}
               </div>
             </div>
 
-            <div className="p-5 bg-white">
-              <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-                <Calendar className="w-3 h-3" />
-                <span>{event.date}</span>
+            <div className="p-6">
+              <div className="flex items-center gap-2 text-xs text-primary/60 mb-3">
+                <Calendar className="w-3 h-3 text-accent" />
+                <span className="font-open-sans">{event.date}</span>
                 <span>•</span>
-                <span className="font-medium">{event.category}</span>
+                <span className="font-medium font-open-sans text-secondary">{event.category}</span>
               </div>
               
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{event.description}</p>
+              <h3 className="font-poppins font-bold text-lg text-primary mb-3">{event.title}</h3>
+              <p className="font-open-sans text-primary/80 text-sm mb-4 leading-relaxed">{event.description}</p>
               
-              <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
-                <MapPin className="w-4 h-4" />
-                <span>{event.location}</span>
+              <div className="flex items-center gap-1 text-sm text-primary/60 mb-4">
+                <MapPin className="w-4 h-4 text-accent" />
+                <span className="font-open-sans">{event.location}</span>
               </div>
               
-              {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-blue-50 rounded-lg p-3 text-center">
-                  <div className="text-lg font-bold text-blue-600">{event.actualAttendees}</div>
-                  <div className="text-xs text-gray-500">Attendees</div>
+                <div className="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-lg p-3 text-center border border-cream-warm/30">
+                  <div className="font-poppins font-bold text-lg text-secondary">{event.actualAttendees}</div>
+                  <div className="font-open-sans text-xs text-primary/60">Attendees</div>
                 </div>
-                <div className="bg-yellow-50 rounded-lg p-3 text-center">
-                  <div className="text-lg font-bold text-yellow-600">⭐ {event.feedback}</div>
-                  <div className="text-xs text-gray-500">Rating</div>
+                <div className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-lg p-3 text-center border border-cream-warm/30">
+                  <div className="font-poppins font-bold text-lg text-accent flex items-center justify-center gap-1">
+                    <Star className="w-4 h-4" /> {event.feedback}
+                  </div>
+                  <div className="font-open-sans text-xs text-primary/60">Rating</div>
                 </div>
-                <div className="bg-green-50 rounded-lg p-3 text-center">
-                  <div className="text-lg font-bold text-green-600">{event.highlights?.length || 0}</div>
-                  <div className="text-xs text-gray-500">Highlights</div>
+                <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-3 text-center border border-cream-warm/30">
+                  <div className="font-poppins font-bold text-lg text-primary">{event.highlights?.length || 0}</div>
+                  <div className="font-open-sans text-xs text-primary/60">Highlights</div>
                 </div>
               </div>
             </div>
@@ -305,86 +331,128 @@ const EventsComponent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-cream-base to-cream-warm">
+      {/* Hero Section */}
+      <section className="relative py-16 lg:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-cream-warm/30 to-cream-base/40"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-6">
+            <h1 className="font-poppins font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">
+              Campus Events at{' '}
+              <span className="text-secondary">PWIOI</span>
+            </h1>
+            <p className="font-open-sans text-lg md:text-xl text-primary/80 leading-relaxed max-w-4xl mx-auto">
+              Experience the vibrant campus life through our diverse events. From technical workshops to cultural celebrations, 
+              there's always something exciting happening at PWIOI.
+            </p>
+          </div>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto">
+            {[
+              { number: '50+', label: 'Annual Events' },
+              { number: '1000+', label: 'Participants' },
+              { number: '5', label: 'Event Categories' },
+              { number: '4.8', label: 'Average Rating' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center p-4 bg-white/70 backdrop-blur-sm rounded-xl border border-cream-warm/30 shadow-lg">
+                <div className="font-poppins font-bold text-2xl md:text-3xl text-secondary mb-1">
+                  {stat.number}
+                </div>
+                <div className="font-open-sans text-sm text-primary/70">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Upcoming Events Section */}
         <div className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Upcoming Events</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary mb-4">Upcoming Events</h2>
+            <p className="font-open-sans text-lg text-primary/80 max-w-2xl mx-auto leading-relaxed">
               Join us for these exciting upcoming events
             </p>
           </div>
 
           {/* Show message when no upcoming events */}
           {upcomingEvents.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">📅</div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">No Upcoming Events</h3>
-              <p className="text-gray-500">Stay tuned for exciting events coming soon!</p>
+            <div className="text-center py-16 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg border border-cream-warm/30">
+              <div className="text-6xl mb-6">📅</div>
+              <h3 className="font-poppins font-bold text-xl text-primary mb-3">No Upcoming Events</h3>
+              <p className="font-open-sans text-primary/60">Stay tuned for exciting events coming soon!</p>
             </div>
           ) : (
             /* Upcoming Events Grid */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcomingEvents.map((event, index) => (
                 <div
                   key={event.id}
-                  className={`group bg-white relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                  className={`group bg-white/70 backdrop-blur-sm relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-cream-warm/30 ${
                     index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
                   }`}
                 >
-                  {/* Event Image with minimal overlay */}
-                  <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} overflow-hidden`}>
+                  {/* Event Image */}
+                  <div className={`relative ${index === 0 ? 'h-64' : 'h-48'} overflow-hidden rounded-t-2xl`}>
                     <img
                       src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        if (target.nextSibling) {
+                          (target.nextSibling as HTMLElement).style.display = 'flex';
+                        }
+                      }}
                     />
-                    <div className="absolute inset-0 bg-black/10" />
+                    <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-cream-base/80 to-cream-warm/60">
+                      <Calendar size={48} className="text-primary/60" />
+                    </div>
                     
-                    {/* Only essential badges on image */}
                     {event.status && (
-                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(event.status)}`}>
+                      <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold shadow-md ${getStatusColor(event.status)}`}>
                         {event.status === 'filling-fast' ? 'Filling Fast' : 'Open'}
                       </div>
                     )}
 
-                    <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center">
+                    <div className="absolute top-4 left-4 text-lg bg-white/20 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center shadow-md">
                       {getCategoryIcon(event.category)}
                     </div>
                   </div>
 
-                  {/* All content below image */}
+                  {/* Content */}
                   <div className="p-6">
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                      <Calendar className="w-4 h-4" />
-                      <span>{event.date}</span>
+                    <div className="flex items-center gap-2 text-sm text-primary/60 mb-4">
+                      <Calendar className="w-4 h-4 text-accent" />
+                      <span className="font-open-sans">{event.date}</span>
                       <span>•</span>
-                      <Clock className="w-4 h-4" />
-                      <span>{event.time}</span>
+                      <Clock className="w-4 h-4 text-accent" />
+                      <span className="font-open-sans">{event.time}</span>
                       <span>•</span>
-                      <span className="text-blue-600 font-medium">{event.category}</span>
+                      <span className="text-secondary font-medium font-open-sans">{event.category}</span>
                     </div>
                     
-                    <h3 className={`font-bold text-gray-900 mb-2 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
+                    <h3 className={`font-poppins font-bold text-primary mb-3 ${index === 0 ? 'text-2xl' : 'text-lg'}`}>
                       {event.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="font-open-sans text-primary/80 text-sm mb-4 leading-relaxed">
                       {event.description}
                     </p>
                     
-                    <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
-                      <MapPin className="w-4 h-4" />
-                      <span>{event.location}</span>
+                    <div className="flex items-center gap-1 text-sm text-primary/60 mb-6">
+                      <MapPin className="w-4 h-4 text-accent" />
+                      <span className="font-open-sans">{event.location}</span>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-sm text-blue-600">
-                        <Users className="w-4 h-4" />
-                        <span className="font-medium">{event.attendees} spots</span>
+                      <div className="flex items-center gap-1 text-sm text-secondary">
+                        <Users className="w-4 h-4 text-accent" />
+                        <span className="font-open-sans font-medium">{event.attendees} spots</span>
                       </div>
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2">
+                      <button className="bg-accent hover:bg-accent-dark text-accent-foreground px-4 py-2 rounded-xl text-sm font-poppins font-medium transition-all duration-300 hover:scale-105 shadow-md flex items-center gap-2">
                         Register <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
@@ -396,16 +464,16 @@ const EventsComponent = () => {
         </div>
 
         {/* Past Events Section */}
-        <div>
+        <div className="pb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Past Events</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary mb-4">Past Events</h2>
+            <p className="font-open-sans text-lg text-primary/80 max-w-2xl mx-auto leading-relaxed">
               Relive the memories and see what made these events special
             </p>
           </div>
 
           {/* Past Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pastEvents.map((event) => renderPastEventCard(event))}
           </div>
         </div>
