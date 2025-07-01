@@ -197,12 +197,7 @@ const MeetOurMentors = () => {
             </button>
           </div>
 
-          {/* Mobile swipe hint */}
-          {isMobile && mentors.length > 1 && (
-            <div className="text-sm text-gray-400 sm:hidden">
-              Swipe to see more →
-            </div>
-          )}
+          
         </div>
 
         {/* Mentors Grid with touch support */}
