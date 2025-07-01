@@ -124,7 +124,7 @@ const MeetOurMentors = () => {
 
         {/* Mentors Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {visibleMentors.map((mentor, index) => (
+          {visibleMentors.map((mentor) => (
             <div
               key={mentor.id}
               className="group cursor-pointer"
