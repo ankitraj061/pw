@@ -1,10 +1,21 @@
 'use client';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const MeetOurMentors = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const mentors = [
     {
@@ -71,8 +82,6 @@ const MeetOurMentors = () => {
       company: 'Google',
       companyLogo: '🔍'
     },
-    
-    
     {
       id: 10,
       name: 'Kaibalya Biswal',
@@ -81,49 +90,128 @@ const MeetOurMentors = () => {
       company: 'Google',
       companyLogo: '🔍'
     },
-
-
   ];
 
+  // Dynamic items per view based on screen size
+  const getItemsPerView = () => {
+    if (typeof window === 'undefined') return 5;
+    if (window.innerWidth < 640) return 1; // mobile
+    if (window.innerWidth < 768) return 2; // tablet
+    if (window.innerWidth < 1024) return 3; // small desktop
+    if (window.innerWidth < 1280) return 4; // medium desktop
+    return 5; // large desktop
+  };
+
+  const [itemsPerView, setItemsPerView] = useState(5);
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      setItemsPerView(getItemsPerView());
+    };
+    
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  const maxIndex = Math.max(0, mentors.length - itemsPerView);
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % Math.max(1, mentors.length - 4));
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + Math.max(1, mentors.length - 4)) % Math.max(1, mentors.length - 4));
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  const visibleMentors = mentors.slice(currentIndex, currentIndex + 5);
+  // Touch handlers for mobile swipe
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentIndex < maxIndex) {
+      nextSlide();
+    }
+    if (isRightSwipe && currentIndex > 0) {
+      prevSlide();
+    }
+  };
+
+  const visibleMentors = mentors.slice(currentIndex, currentIndex + itemsPerView);
+
+  // Calculate grid columns based on items per view
+  const getGridCols = () => {
+    switch (itemsPerView) {
+      case 1: return 'grid-cols-1';
+      case 2: return 'grid-cols-2';
+      case 3: return 'grid-cols-3';
+      case 4: return 'grid-cols-4';
+      case 5: return 'grid-cols-5';
+      default: return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5';
+    }
+  };
 
   return (
-    <section className="py-20 bg-background text-white overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-20 bg-background text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12 gap-4">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2 text-primary">Our Mentors</h2>
-            
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 text-primary">
+              Our Mentors
+            </h2>
           </div>
           
-          {/* Navigation Buttons */}
-          <div className="flex gap-4">
+          {/* Navigation Buttons - Hide on mobile, show swipe hint instead */}
+          <div className="hidden sm:flex gap-4">
             <button
               onClick={prevSlide}
-              className="w-12 h-12 text-primary bg-accent rounded-full border border-primary flex items-center justify-center  hover:text-white hover:bg-primary transition-all duration-300 group"
+              disabled={currentIndex === 0}
+              className="w-10 h-10 lg:w-12 lg:h-12 text-primary bg-accent rounded-full border border-primary flex items-center justify-center hover:text-white hover:bg-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="w-12 h-12 text-primary bg-accent rounded-full border border-primary flex items-center justify-center hover:text-white hover:bg-primary transition-all duration-300 group"
+              disabled={currentIndex >= maxIndex}
+              className="w-10 h-10 lg:w-12 lg:h-12 text-primary bg-accent rounded-full border border-primary flex items-center justify-center hover:text-white hover:bg-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
             </button>
           </div>
+
+          {/* Mobile swipe hint */}
+          {isMobile && mentors.length > 1 && (
+            <div className="text-sm text-gray-400 sm:hidden">
+              Swipe to see more →
+            </div>
+          )}
         </div>
 
-        {/* Mentors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        {/* Mentors Grid with touch support */}
+        <div 
+          className={`grid ${getGridCols()} gap-4 sm:gap-6`}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {visibleMentors.map((mentor) => (
             <div
               key={mentor.id}
@@ -131,35 +219,26 @@ const MeetOurMentors = () => {
             >
               {/* Mentor Card */}
               <div className="relative overflow-hidden rounded-2xl hover:scale-105 transition-transform duration-300">
-
-
-                <div className="relative h-80 rounded-xl overflow-hidden">
+                <div className="relative h-64 sm:h-72 lg:h-80 rounded-xl overflow-hidden">
                   {/* Background Image */}
                   <img
                     src={mentor.image}
                     alt={mentor.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   
                   {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-bold text-accent mb-1">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-accent mb-1">
                       {mentor.name}
                     </h3>
-                    <p className="text-white text-sm mb-3">
+                    <p className="text-white text-xs sm:text-sm mb-3">
                       {mentor.role}
                     </p>
-                    
-                    {/* Company */}
-                    {/* <div className="flex items-center gap-2">
-                      <span className="text-2xl">{mentor.companyLogo}</span>
-                      <span className="text-white font-semibold text-sm">
-                        {mentor.company}
-                      </span>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -168,16 +247,39 @@ const MeetOurMentors = () => {
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center mt-8 gap-2">
-          {Array.from({ length: Math.max(1, mentors.length - 4) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentIndex ? 'bg-white w-8' : 'bg-gray-600'
-              }`}
-            />
-          ))}
+        {maxIndex > 0 && (
+          <div className="flex justify-center mt-6 sm:mt-8 gap-2">
+            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 touch-manipulation ${
+                  index === currentIndex 
+                    ? 'bg-white w-6 sm:w-8' 
+                    : 'bg-gray-600 w-2'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Mobile navigation buttons at bottom */}
+        <div className="flex sm:hidden justify-center gap-4 mt-6">
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= maxIndex}
+            className="w-10 h-10 text-primary bg-accent rounded-full border border-primary flex items-center justify-center active:scale-95 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>

@@ -138,15 +138,16 @@ const MeetOurLeadership = () => {
         <div className="lg:hidden">
           {/* Featured Leader - Mobile */}
           {topLeader && (
-            <div className="bg-gradient-to-br from-white to-cream-warm/30 rounded-2xl p-8 shadow-lg mb-8 border border-primary/10">
+            <div className="bg-white rounded-2xl p-8 shadow-lg mb-8 border border-primary/10">
               <div className="flex flex-col items-center text-center">
-                <div className="relative mb-6">
-                  <div className="w-full h-48 relative">
+                <div className="relative mb-6 w-full mx-auto">
+                  <div className="w-full h-56 relative">
                     <Image
                       src={topLeader.image}
                       alt={topLeader.name}
                       fill
                       className="rounded-xl object-cover shadow-xl"
+                      priority
                     />
                   </div>
                   <div className="absolute top-3 right-3 w-8 h-8 bg-accent rounded-full flex items-center justify-center shadow-lg">
@@ -188,7 +189,7 @@ const MeetOurLeadership = () => {
                     <p className="text-accent text-sm font-medium">{leader.role}</p>
                   </div>
                 </div>
-                <p className="text-sm text-primary/80 mb-4 font-open-sans">{leader.description}</p>
+                
                 <Button
                   variant="outline"
                   size="sm"

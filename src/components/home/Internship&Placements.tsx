@@ -34,13 +34,12 @@ const InternshipAndPlacements = () => {
       joiningMonth: 'TBD',
       joiningYear: 2024,
     },
-   
     {
       id: 4,
       name: 'Nimish Agrawal',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=400&fit=crop&crop=face',
       company: 'Physics Wallah IOI',
-      role: 'Brand strategist ',
+      role: 'Brand strategist',
       joiningMonth: 'TBD',
       joiningYear: 2024,
     },
@@ -76,7 +75,7 @@ const InternshipAndPlacements = () => {
       name: 'Vivek Shelke',
       image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=face',
       company: 'Prephub',
-      role: 'Operations ',
+      role: 'Operations',
       joiningMonth: 'Sep',
       joiningYear: 2024,
     },
@@ -157,7 +156,7 @@ const InternshipAndPlacements = () => {
       name: 'Harish Kumar',
       image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=400&fit=crop&crop=face',
       company: 'Physics Wallah IOI',
-      role: 'Placement Coordinator ',
+      role: 'Placement Coordinator',
       joiningMonth: 'TBD',
       joiningYear: 2024,
     },
@@ -229,15 +228,15 @@ const InternshipAndPlacements = () => {
       name: 'Karthikeya Bendi',
       image: 'https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=300&h=400&fit=crop&crop=face',
       company: 'Advait',
-      role: 'n8n Specialist ',
+      role: 'n8n Specialist',
       joiningMonth: 'TBD',
       joiningYear: 2024,
     },
   ];
 
   const StudentCard = ({ student }: { student: Student }) => (
-    <div className="flex-shrink-0 w-70 mx-4">
-      <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group h-80">
+    <div className="flex-shrink-0 w-64 sm:w-70 mx-2 sm:mx-4">
+      <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group h-72 sm:h-80">
         {/* Background Image */}
         <img
           src={student.image}
@@ -245,35 +244,29 @@ const InternshipAndPlacements = () => {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
         />
         
-        {/* Overlay Content - Simplified with less blur */}
+        {/* Overlay Content */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-          {/* Bottom Section - All content consolidated here */}
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <div className="backdrop-blur-sm bg-black/30 rounded-lg p-4 border border-white/20 space-y-3">
+          {/* Bottom Section */}
+          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+            <div className="backdrop-blur-sm bg-black/30 rounded-lg p-3 sm:p-4 border border-white/20 space-y-2 sm:space-y-3">
               {/* Name and Company */}
-              <div className="text-center space-y-2">
-                <h3 className="font-poppins font-bold text-accent text-lg">
+              <div className="text-center space-y-1 sm:space-y-2">
+                <h3 className="font-bold text-accent text-base sm:text-lg leading-tight">
                   {student.name}
                 </h3>
-                <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
-                  <Building2 className="w-4 h-4" />
-                  <span className="font-semibold text-sm">{student.company}</span>
+                <div className="flex items-center justify-center gap-2 text-white/90 text-xs sm:text-sm">
+                  <Building2 className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+                  <span className="font-semibold text-center leading-tight">
+                    {student.company}
+                  </span>
                 </div>
               </div>
               
-              {/* Role and Date */}
-              <div className="space-y-2">
-                <div className="flex justify-center">
-                  <Badge className="bg-accent text-primary hover:bg-white transition-colors duration-200">
-                    {student.role}
-                  </Badge>
-                </div>
-                {/* <div className="flex items-center justify-center gap-2 text-white/90 text-sm">
-                  <Calendar className="w-4 h-4" />
-                  <span>
-                    Joined {student.joiningMonth} {student.joiningYear}
-                  </span>
-                </div> */}
+              {/* Role */}
+              <div className="flex justify-center">
+                <Badge className="bg-primary text-white hover:bg-yellow-300 transition-colors duration-200 text-xs sm:text-sm px-2 py-1">
+                  {student.role}
+                </Badge>
               </div>
             </div>
           </div>
@@ -283,25 +276,21 @@ const InternshipAndPlacements = () => {
   );
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-poppins font-bold text-3xl md:text-4xl text-gray-800 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-800 mb-4">
             Internships & Placements
           </h2>
-          <p className="font-open-sans text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
             We are dedicated to providing our students with exceptional
             internship and placement opportunities, ensuring they gain
             real-world experience and are well-prepared for their careers.
           </p>
         </div>
 
-        {/* Marquee Section */}
-        <div className="relative overflow-hidden">
-          {/* Gradient fade on sides */}
-          <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
-
+        {/* Marquee Section - No gradient fade */}
+        <div className="overflow-hidden">
           {/* Actual Marquee */}
           <div className="whitespace-nowrap animate-marquee">
             <div className="flex inline-flex">
@@ -329,11 +318,18 @@ const InternshipAndPlacements = () => {
 
         .animate-marquee {
           display: inline-block;
-          animation: marquee 100s linear infinite;
+          animation: marquee 120s linear infinite;
         }
 
         .animate-marquee:hover {
           animation-play-state: paused;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+          .animate-marquee {
+            animation-duration: 80s;
+          }
         }
       `}</style>
     </section>

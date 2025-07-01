@@ -193,7 +193,7 @@ const Navbar = () => {
                 {/* Mobile Students Dropdown Content */}
                 {isMobileStudentsOpen && (
                   <div className="mt-2 space-y-2 px-3">
-                    <p className="text-sm text-gray-600 mb-3">Select a school:</p>
+                    
                     {schools.map((school) => (
                       <Link
                         key={school.id}
@@ -202,14 +202,10 @@ const Navbar = () => {
                         className="flex items-center justify-between w-full px-4 py-3 text-sm bg-white border border-gray-200 rounded-lg hover:bg-accent/10 hover:border-accent transition-colors duration-200"
                       >
                         <span className="font-medium text-gray-700">{school.name}</span>
-                        <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                          {school.shortName}
-                        </span>
+                        
                       </Link>
                     ))}
-                    <p className="text-xs text-gray-500 mt-3 px-2">
-                      Select a school to view locations and batches
-                    </p>
+                    
                   </div>
                 )}
               </div>
