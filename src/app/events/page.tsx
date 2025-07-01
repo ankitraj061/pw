@@ -343,7 +343,7 @@ const EventsComponent = () => {
             </h1>
             <p className="font-open-sans text-lg md:text-xl text-primary/80 leading-relaxed max-w-4xl mx-auto">
               Experience the vibrant campus life through our diverse events. From technical workshops to cultural celebrations, 
-              there's always something exciting happening at PWIOI.
+              there&apos;s always something exciting happening at PWIOI.
             </p>
           </div>
           
