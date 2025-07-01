@@ -26,7 +26,7 @@ const LifeAtPWIOI = () => {
     'col-span-1 row-span-1', // normal
   ];
 
-  const handleImageClick = (index) => {
+  const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
@@ -35,7 +35,7 @@ const LifeAtPWIOI = () => {
     setIsModalOpen(false);
   };
 
-  const handleImageTransition = (newIndex, slideDirection) => {
+  const handleImageTransition = (newIndex: number, slideDirection: string) => {
     if (isAnimating) return;
 
     setDirection(slideDirection);
