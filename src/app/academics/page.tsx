@@ -3,11 +3,23 @@ import React, { useState } from 'react';
 import { 
   BookOpen, Users, Award, TrendingUp, Building, Code, 
   PieChart, Stethoscope, PlayCircle, ChevronRight, Lightbulb,
-  DollarSign
+  DollarSign, LucideIcon
 } from 'lucide-react';
 
+// Define the school keys as a union type
+type SchoolKey = 'technology' | 'management' | 'healthcare';
+
+// Define the school structure interface
+interface SchoolData {
+  title: string;
+  icon: LucideIcon;
+  description: string;
+  departments: string[];
+  recruiters: string[];
+}
+
 const AcademicsPage = () => {
-  const [activeSchool, setActiveSchool] = useState('technology');
+  const [activeSchool, setActiveSchool] = useState<SchoolKey>('technology');
 
   const stats = [
     { icon: BookOpen, number: '3', label: 'Programs', color: 'text-primary' },
@@ -15,7 +27,7 @@ const AcademicsPage = () => {
     { icon: Award, number: '90%', label: 'Placement', color: 'text-primary' },
   ];
 
-  const schools = {
+  const schools: Record<SchoolKey, SchoolData> = {
     technology: {
       title: 'School of Technology',
       icon: Code,
@@ -103,7 +115,7 @@ const AcademicsPage = () => {
           </div>
 
           <div className="flex justify-center gap-4 mb-12 flex-wrap">
-            {Object.entries(schools).map(([key, school]) => {
+            {(Object.entries(schools) as [SchoolKey, SchoolData][]).map(([key, school]) => {
               const IconComponent = school.icon;
               const isActive = activeSchool === key;
               return (
