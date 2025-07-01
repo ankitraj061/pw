@@ -1,12 +1,44 @@
 'use client';
 import React, { useState } from 'react';
-import { Users, Trophy, Heart, Code, Palette, ArrowLeft, Mail, Calendar } from 'lucide-react';
+import { Users, Trophy, Heart, Code, Palette, ArrowLeft, Mail, Calendar, LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 
-const ClubPage = () => {
-  const [selectedClub, setSelectedClub] = useState(null);
+// Define club key type
+type ClubKey = 'tech' | 'social' | 'cultural' | 'creators' | 'sports';
 
-  const clubsData = {
+// Define interfaces for type safety
+interface ClubHead {
+  name: string;
+  position: string;
+  email: string;
+  phone?: string;
+}
+
+interface CoreMember {
+  name: string;
+  position: string;
+  specialty?: string;
+}
+
+interface ClubData {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  image: string;
+  logo?: string;
+  bgColor: string;
+  color: string;
+  description: string;
+  head: ClubHead;
+  coreMembers: CoreMember[];
+  activities: string[];
+  recentEvents: string[];
+}
+
+const ClubPage = () => {
+  const [selectedClub, setSelectedClub] = useState<ClubKey | null>(null);
+
+  const clubsData: Record<ClubKey, ClubData> = {
     tech: {
       id: 'tech',
       name: 'Tech Club (Qubit)',
@@ -382,7 +414,7 @@ const ClubPage = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(clubsData).map(([key, club]) => {
+            {(Object.entries(clubsData) as [ClubKey, ClubData][]).map(([key, club]) => {
               const IconComponent = club.icon;
               return (
                 <div
@@ -399,8 +431,11 @@ const ClubPage = () => {
                         className="object-cover"
                         fill
                         onError={(e) => {
-                          e.target.style.display = 'none';
-                          e.target.nextSibling.style.display = 'flex';
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          if (target.nextSibling) {
+                            (target.nextSibling as HTMLElement).style.display = 'flex';
+                          }
                         }}
                       />
                       <div className="absolute inset-0 bg-black/10 hidden items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
@@ -419,8 +454,11 @@ const ClubPage = () => {
                             height={48}
                             className="w-12 h-12 object-contain rounded-lg"
                             onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.nextSibling.style.display = 'block';
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              if (target.nextSibling) {
+                                (target.nextSibling as HTMLElement).style.display = 'block';
+                              }
                             }}
                           />
                         ) : null}
