@@ -3,8 +3,19 @@
 import { Badge } from '@/components/ui/badge';
 import { Building2 } from 'lucide-react';
 
+// Define the Student type
+interface Student {
+  id: number;
+  name: string;
+  image: string;
+  company: string;
+  role: string;
+  joiningMonth: string;
+  joiningYear: number;
+}
+
 const InternshipAndPlacements = () => {
-  const placedStudents = [
+  const placedStudents: Student[] = [
     {
       id: 1,
       name: 'Rishabh Jain',
@@ -224,7 +235,7 @@ const InternshipAndPlacements = () => {
     },
   ];
 
-  const StudentCard = ({ student }) => (
+  const StudentCard = ({ student }: { student: Student }) => (
     <div className="flex-shrink-0 w-70 mx-4">
       <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group h-80">
         {/* Background Image */}
