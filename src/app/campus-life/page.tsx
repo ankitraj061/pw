@@ -6,7 +6,6 @@ import {
   Utensils, 
   Trophy, 
   Building, 
-  Calendar, 
   
   Star,
   
@@ -35,10 +34,9 @@ const CampusLifePage = () => {
   ];
 
   const diversityStats = [
-    { percentage: '35%', label: 'International Students', color: 'bg-accent' },
     { percentage: '45%', label: 'Female Students', color: 'bg-accent' },
     { percentage: '60%', label: 'Scholarship Recipients', color: 'bg-accent' },
-    { percentage: '25%', label: 'First-Generation College', color: 'bg-accent' }
+    { percentage: '100%', label: 'First-Generation College', color: 'bg-accent' }
   ];
 
   const hostelFeatures = [
@@ -61,12 +59,12 @@ const CampusLifePage = () => {
     { title: 'Innovation Hub', description: 'Maker spaces and startup incubation center', image: 'innovation' }
   ];
 
-  const recentEvents = [
-    { title: 'PWIOI Tech Summit 2024', date: 'March 15-17', category: 'Technology', image: 'tech-summit' },
-    { title: 'Cultural Festival - Rang-e-PWIOI', date: 'February 20-25', category: 'Cultural', image: 'cultural' },
-    { title: 'Inter-College Sports Meet', date: 'January 10-15', category: 'Sports', image: 'sports-meet' },
-    { title: 'Industry Connect Symposium', date: 'December 8-10', category: 'Academic', image: 'industry' }
-  ];
+  // const recentEvents = [
+  //   { title: 'PWIOI Tech Summit 2024', date: 'March 15-17', category: 'Technology', image: 'tech-summit' },
+  //   { title: 'Cultural Festival - Rang-e-PWIOI', date: 'February 20-25', category: 'Cultural', image: 'cultural' },
+  //   { title: 'Inter-College Sports Meet', date: 'January 10-15', category: 'Sports', image: 'sports-meet' },
+  //   { title: 'Industry Connect Symposium', date: 'December 8-10', category: 'Academic', image: 'industry' }
+  // ];
 
   const studentVlogs = [
     { 
@@ -83,20 +81,6 @@ const CampusLifePage = () => {
       duration: '12:15',
       thumbnail: 'campus-tour'
     },
-    { 
-      title: 'Mess Food Review & Hostel Life', 
-      creator: 'Anjali Patel - ECE 2nd Year',
-      views: '32.1K',
-      duration: '10:45',
-      thumbnail: 'mess-review'
-    },
-    { 
-      title: 'Sports Day Highlights & Facilities Tour', 
-      creator: 'Vikram Singh - Mech 4th Year',
-      views: '22.8K',
-      duration: '15:20',
-      thumbnail: 'sports-tour'
-    }
   ];
 
   return (
@@ -176,12 +160,11 @@ const CampusLifePage = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/xL8op-oqRTg"
+                src="https://www.youtube.com/watch?v=A_HZ7gS7mOo"
                 title="Campus Diversity Showcase"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="w-full h-full rounded-2xl"
+                className="w-full h-full rounded-2xl no-border"
               ></iframe>
               </div>
               <p className="font-open-sans text-center text-primary/70 mt-4">
@@ -226,8 +209,17 @@ const CampusLifePage = () => {
             
             <div className="order-1 lg:order-2">
               <div className="space-y-6">
-                <div className="aspect-video bg-gradient-to-br from-blue-200 to-indigo-200 rounded-2xl flex items-center justify-center shadow-lg">
-                  <PlayCircle size={70} className="text-blue-600 opacity-80 hover:opacity-100 cursor-pointer transition-opacity" />
+                <div className="aspect-video bg-gradient-to-br from-blue-200 to-indigo-200 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/watch?v=ASlY10rMtd8"
+                    title="PWIOI Hostel Life"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full rounded-2xl"
+                  ></iframe>
                 </div>
                 <div className="bg-white p-6 rounded-xl shadow-md">
                   <h4 className="font-poppins font-semibold text-lg text-primary mb-2">
@@ -331,13 +323,6 @@ const CampusLifePage = () => {
               })}
             </div>
             </div>
-          
-          <div className="aspect-video bg-gradient-to-br from-green-100 to-teal-200 rounded-xl flex items-center justify-center shadow-lg">
-            <PlayCircle size={60} className="text-green-600 opacity-80 hover:opacity-100 cursor-pointer transition-opacity" />
-          </div>
-          <p className="font-open-sans text-center text-primary/70 mt-4">
-            Take a virtual tour of our sports facilities
-          </p>
         </div>
       </section>
 
@@ -365,41 +350,6 @@ const CampusLifePage = () => {
                 <p className="font-open-sans text-primary/70 text-sm">
                   {item.description}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Events Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-poppins font-bold text-3xl md:text-4xl text-primary mb-4">
-              Campus Events & Activities
-            </h2>
-            <p className="font-open-sans text-lg text-primary/80 max-w-3xl mx-auto">
-              Year-round excitement with festivals, competitions, seminars, and cultural celebrations.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {recentEvents.map((event, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="aspect-video bg-gradient-to-br bg-blue-50 flex items-center justify-center">
-                  <Calendar size={40} className="text-blue-200 opacity-80" />
-                </div>
-                <div className="p-6">
-                  <div className="text-xs font-open-sans text-accent font-medium mb-2">
-                    {event.category}
-                  </div>
-                  <h4 className="font-poppins font-semibold text-lg text-primary mb-2">
-                    {event.title}
-                  </h4>
-                  <p className="font-open-sans text-primary/70 text-sm">
-                    {event.date}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
