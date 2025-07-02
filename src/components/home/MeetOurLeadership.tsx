@@ -114,7 +114,7 @@ const MeetOurLeadership = () => {
                       <h4 className="text-xl font-semibold text-primary mb-2 font-poppins transition-colors duration-200">
                         {leader.name}
                       </h4>
-                      <p className="text-accent text-base font-medium mb-3">{leader.role}</p>
+                      <p className="text-secondary text-base font-medium mb-3">{leader.role}</p>
                       
                     </div>
                     <div className="mt-4">
@@ -156,7 +156,7 @@ const MeetOurLeadership = () => {
                 </div>
                 
                 <h3 className="text-2xl font-semibold text-primary mb-2 font-poppins">{topLeader.name}</h3>
-                <p className="text-accent font-medium mb-4 text-lg">{topLeader.role}</p>
+                <p className="text-secondary font-medium mb-4 text-lg">{topLeader.role}</p>
                 <p className="text-primary/80 text-sm leading-relaxed mb-6 font-open-sans">
                   {topLeader.description}
                 </p>
@@ -186,7 +186,7 @@ const MeetOurLeadership = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-primary font-poppins">{leader.name}</h4>
-                    <p className="text-accent text-sm font-medium">{leader.role}</p>
+                    <p className="text-secondary text-sm font-medium">{leader.role}</p>
                   </div>
                 </div>
                 

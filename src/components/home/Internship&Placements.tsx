@@ -266,7 +266,7 @@ const InternshipAndPlacements = () => {
               
               {/* Role */}
               <div className="flex justify-center">
-                <Badge className="bg-primary text-white hover:bg-yellow-300 transition-colors duration-200 text-xs sm:text-sm px-2 py-1">
+                <Badge className="bg-primary text-white  transition-colors duration-200 text-xs sm:text-sm px-2 py-1">
                   {student.role}
                 </Badge>
               </div>
@@ -281,10 +281,10 @@ const InternshipAndPlacements = () => {
     <section className="py-12 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl text-gray-800 mb-4">
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl text-primary mb-4">
             Internships & Placements
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-secondary max-w-3xl mx-auto px-4">
             We are dedicated to providing our students with exceptional
             internship and placement opportunities, ensuring they gain
             real-world experience and are well-prepared for their careers.

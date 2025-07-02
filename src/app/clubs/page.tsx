@@ -38,6 +38,26 @@ interface ClubData {
 const ClubPage = () => {
   const [selectedClub, setSelectedClub] = useState<ClubKey | null>(null);
 
+  // Function to handle club selection with scroll to top
+  const handleClubSelection = (clubKey: ClubKey) => {
+    setSelectedClub(clubKey);
+    // Scroll to top smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Function to handle back button with scroll to top
+  const handleBackToClubs = () => {
+    setSelectedClub(null);
+    // Scroll to top smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const clubsData: Record<ClubKey, ClubData> = {
     tech: {
       id: 'tech',
@@ -219,7 +239,7 @@ const ClubPage = () => {
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <button 
-              onClick={() => setSelectedClub(null)}
+              onClick={handleBackToClubs}
               className="flex items-center gap-2 mb-8 text-white/80 hover:text-white transition-all duration-300 hover:scale-105"
             >
               <ArrowLeft size={20} />
@@ -419,7 +439,7 @@ const ClubPage = () => {
               return (
                 <div
                   key={key}
-                  onClick={() => setSelectedClub(key)}
+                  onClick={() => handleClubSelection(key)}
                   className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
                 >
                   <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-cream-warm/30 h-[480px] flex flex-col">
