@@ -50,16 +50,9 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-4">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-8 sm:px-10 py-4 text-lg sm:text-xl transition-all duration-300 hover:scale-105 shadow-lg"
+                className="w-full sm:w-auto bg-accent hover:bg-accent-dark text-accent-foreground font-semibold px-8 sm:px-10 py-4 text-lg sm:text-xl transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer"
               >
                 Explore Campus
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto border-2 border-white/80 text-primary hover:bg-primary hover:text-white font-semibold px-8 sm:px-10 py-4 text-lg sm:text-xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
-                Student Login
               </Button>
             </div>
           </div>
